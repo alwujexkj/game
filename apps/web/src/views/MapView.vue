@@ -5,17 +5,20 @@ import { MAP_HOTSPOTS, PROFILE_KEYS, PROFILE_META } from '@sujia/shared';
 import { useProfileStore } from '../stores/profile';
 import { useProgressStore } from '../stores/progress';
 import { useWorkshopStore } from '../stores/workshop';
+import { useInventoryStore } from '../stores/inventory';
 
 const router = useRouter();
 const profile = useProfileStore();
 const progress = useProgressStore();
 const workshop = useWorkshopStore();
+const inventory = useInventoryStore();
 
 onMounted(() => {
   if (!profile.activeKey) router.replace('/select');
   else {
     progress.hydrateFromServer(profile.activeKey);
     workshop.hydrateFromServer();
+    inventory.hydrateFromServer(profile.activeKey);
   }
 });
 
@@ -40,6 +43,11 @@ function hotspotBadge(id: string) {
     const n = workshop.published.length;
     return n > 0 ? `${n}关` : '可玩';
   }
+  if (id === 'bag') {
+    const n = inventory.totalCount(profile.activeKey);
+    return n > 0 ? `${n}张` : '可玩';
+  }
+  if (id === 'rank') return '本周';
   return '…';
 }
 
@@ -92,7 +100,7 @@ function playPublished(id: string) {
       <img src="/art/map-avatars-v1.png" alt="果冻提示" />
       <div>
         <strong>果冻提示</strong>
-        <p>点「数学馆」「英语岛」「组队」或「工坊」！工坊谷的关卡会出现在下方图钉。</p>
+        <p>点「数学馆」「英语岛」「组队」「工坊」「背包」或「排行」！工坊谷的关卡会出现在下方图钉。</p>
       </div>
     </section>
 
@@ -130,6 +138,8 @@ function playPublished(id: string) {
 
     <nav class="bottom">
       <button class="tap ghost" type="button" @click="router.push('/')">首页</button>
+      <button class="tap ghost" type="button" @click="router.push('/bag')">背包</button>
+      <button class="tap ghost" type="button" @click="router.push('/rank')">排行</button>
       <button class="tap ghost" type="button" @click="router.push('/parent')">家长</button>
     </nav>
   </main>
@@ -157,6 +167,7 @@ function playPublished(id: string) {
 .hotspots {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* 6 hotspots: math/english/team/workshop/bag/rank */
   gap: 0.65rem;
   margin-top: 0.75rem;
 }

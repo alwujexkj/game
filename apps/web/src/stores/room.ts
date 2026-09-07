@@ -3,9 +3,11 @@ import { ref, shallowRef } from 'vue';
 import { io, type Socket } from 'socket.io-client';
 import {
   DEMO_FAMILY_ID,
+  PROFILE_KEYS,
   type ProfileKey,
   type RoomPublicState,
 } from '@sujia/shared';
+import { useRankStore } from './rank';
 
 function resolveServerUrl() {
   const env = import.meta.env.VITE_SERVER_URL as string | undefined;
@@ -62,6 +64,14 @@ export const useRoomStore = defineStore('room', () => {
     });
     s.on('room.settled', (payload: NonNullable<typeof settled.value>) => {
       settled.value = payload;
+      try {
+        const keys = Object.keys(payload.starsByProfile || {}).filter((k): k is ProfileKey =>
+          (PROFILE_KEYS as readonly string[]).includes(k),
+        );
+        if (keys.length) useRankStore().recordTeamGame(keys);
+      } catch {
+        // pinia may not be ready in edge cases
+      }
     });
     s.on('room.error', (err: { code: string; message: string }) => {
       lastError.value = err;

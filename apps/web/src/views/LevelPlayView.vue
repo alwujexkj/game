@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { computeStars, getLevel, type LevelId } from '@sujia/shared';
+import { LEVEL_WEAK_TAG_HINTS, computeStars, getLevel, type LevelId, type StickerId } from '@sujia/shared';
 import { getBank, type BankQuestion } from '../data/banks';
 import { useProfileStore } from '../stores/profile';
 import { useProgressStore } from '../stores/progress';
+import { useInventoryStore } from '../stores/inventory';
 import JellyBubble from '../components/level/JellyBubble.vue';
 import SettleModal from '../components/level/SettleModal.vue';
 import McqQuestion from '../components/level/McqQuestion.vue';
@@ -18,6 +19,7 @@ const route = useRoute();
 const router = useRouter();
 const profile = useProfileStore();
 const progress = useProgressStore();
+const inventory = useInventoryStore();
 
 const levelId = computed(() => String(route.params.levelId || '') as LevelId);
 const levelDef = computed(() => getLevel(levelId.value));
@@ -34,6 +36,7 @@ const jellyTip = ref('加油！果冻和你一起闯关～');
 const jellyMood = ref<'happy' | 'think' | 'cheer' | 'oops'>('happy');
 const settled = ref(false);
 const stars = ref(0);
+const droppedSticker = ref<StickerId | null>(null);
 const timeLeft = ref(0);
 let timer: ReturnType<typeof setInterval> | null = null;
 
@@ -60,6 +63,7 @@ function resetRun() {
   locking.value = false;
   settled.value = false;
   stars.value = 0;
+  droppedSticker.value = null;
   jellyTip.value = '加油！果冻和你一起闯关～';
   jellyMood.value = 'happy';
   stopTimer();
@@ -111,6 +115,7 @@ async function finish(_cleared: boolean) {
       stars: s,
       bestCombo: bestCombo.value,
     });
+    droppedSticker.value = inventory.tryDropAfterSettle(profile.activeKey, s);
   }
 }
 
@@ -138,6 +143,10 @@ function onWrong() {
   answered.value += 1;
   combo.value = 0;
   hearts.value = Math.max(0, hearts.value - 1);
+  if (profile.activeKey) {
+    const hints = LEVEL_WEAK_TAG_HINTS[levelId.value] ?? ['综合练习'];
+    progress.recordWrong(profile.activeKey, hints[0]);
+  }
   jellyMood.value = 'oops';
   jellyTip.value = hearts.value > 0 ? '哎呀，再试下一题～' : '爱心用完了…我们结算吧';
   locking.value = true;
@@ -255,9 +264,11 @@ onBeforeUnmount(() => stopTimer());
       :correct="correctCount"
       :total="total"
       :level-title="levelDef.title"
+      :dropped-sticker="droppedSticker"
       @replay="resetRun"
       @back="router.push(listPath)"
       @map="router.push('/map')"
+      @bag="router.push('/bag')"
     />
   </main>
   <main v-else class="page">

@@ -44,6 +44,21 @@ const router = createRouter({
       name: 'room-play',
       component: () => import('../views/room/RoomPlayView.vue'),
     },
+    {
+      path: '/workshop',
+      name: 'workshop',
+      component: () => import('../views/workshop/WorkshopHubView.vue'),
+    },
+    {
+      path: '/workshop/:id',
+      name: 'workshop-edit',
+      component: () => import('../views/workshop/WorkshopEditorView.vue'),
+    },
+    {
+      path: '/workshop/:id/play',
+      name: 'workshop-play',
+      component: () => import('../views/workshop/WorkshopPlayView.vue'),
+    },
   ],
   scrollBehavior() {
     return { top: 0 };

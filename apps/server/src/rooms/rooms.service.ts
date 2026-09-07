@@ -6,9 +6,11 @@ import {
   TEAM_LEVEL_ID,
   TEAM_QUESTION_TOTAL,
   computeStars,
+  minAgeBand,
   pickTeamQuestions,
   publicQuestion,
   toPublicRoomState,
+  type AgeBand,
   type ProfileKey,
   type RoomHotState,
   type RoomMemberState,
@@ -268,7 +270,14 @@ export class RoomsService {
     room.status = 'playing';
     room.score = this.emptyScore(room.members);
 
-    const questions = pickTeamQuestions(room.seed, TEAM_QUESTION_TOTAL);
+    const memberBands: AgeBand[] = online
+      .map((m) => {
+        const key = m.profileId as ProfileKey;
+        return PROFILE_META[key]?.ageBand;
+      })
+      .filter((b): b is AgeBand => Boolean(b));
+    const packBand = minAgeBand(memberBands);
+    const questions = pickTeamQuestions(room.seed, TEAM_QUESTION_TOTAL, packBand);
     room._questions = questions;
     room.turnState = this.buildTurn(questions, 0);
 

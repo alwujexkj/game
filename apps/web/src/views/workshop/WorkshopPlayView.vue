@@ -136,7 +136,7 @@ function onCorrect(tip?: string) {
   combo.value += 1;
   bestCombo.value = Math.max(bestCombo.value, combo.value);
   jellyMood.value = 'cheer';
-  jellyTip.value = tip || (combo.value >= 3 ? `连击 ×${combo.value}！汪汪！` : '答对啦！真棒！');
+  jellyTip.value = tip || (combo.value >= 3 ? `连击 ×${combo.value}！` : '答对啦！汪！');
   locking.value = true;
   setTimeout(nextOrFinish, 550);
 }
@@ -146,7 +146,7 @@ function onWrong() {
   combo.value = 0;
   hearts.value = Math.max(0, hearts.value - 1);
   jellyMood.value = 'oops';
-  jellyTip.value = hearts.value > 0 ? '哎呀，再试下一题～' : '爱心用完了…我们结算吧';
+  jellyTip.value = hearts.value > 0 ? '再选一次～' : '爱心没了，先看结果～';
   locking.value = true;
   if (hearts.value <= 0) {
     setTimeout(finish, 600);

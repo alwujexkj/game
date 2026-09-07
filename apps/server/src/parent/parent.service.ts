@@ -7,6 +7,7 @@ import {
 } from '@sujia/shared';
 import { ProfileKey as PrismaProfileKey } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
+import { pinMatchesStoredHash } from './hash-parent-pin';
 
 const DEMO_FAMILY_NAME = '苏家学习乐园 Demo';
 
@@ -83,19 +84,13 @@ export class ParentService {
     }
   }
 
-  /** Accept raw pin from client; hash server-side for compare when DB has hash. */
+  /** Accept raw pin from client; hash the same way as web setPin before compare. */
   async verifyPin(pin: string): Promise<{ ok: boolean; offline?: boolean }> {
-    // Client primarily compares locally; server only helps if hash was synced.
-    // We store client hash as-is via setPinHash — verify endpoint receives raw pin
-    // so we cannot recompute without same salt. For demo, treat as offline-first.
     if (!(await this.ensureDb())) return { ok: false, offline: true };
     try {
       const family = await this.ensureFamily();
       if (!family?.parentPinHash) return { ok: false };
-      // Demo: if client sends pin matching length only when offline local fails —
-      // actual compare happens client-side. Return false unless exact hash string sent as pin.
-      if (pin === family.parentPinHash) return { ok: true };
-      return { ok: false };
+      return { ok: pinMatchesStoredHash(pin, family.parentPinHash) };
     } catch {
       return { ok: false, offline: true };
     }

@@ -243,11 +243,11 @@ export interface TeamQuestionPayload {
 
 /** Deterministic T1 bank — server shuffles by seed so all clients match. */
 export const TEAM_T1_BANK: TeamQuestionPayload[] = [
-  { id: 'T1-01', type: 'mcq', prompt: '3 + 2 = ?', choices: ['4', '5', '6', '3'], answer: '5', jelly: '开门需要 5 块积木！' },
-  { id: 'T1-02', type: 'mcq', prompt: '7 − 3 = ?', choices: ['3', '4', '5', '2'], answer: '4', jelly: '门缝打开一点了～' },
+  { id: 'T1-01', type: 'mcq', prompt: '3 + 2 = ?', choices: ['4', '5', '6', '3'], answer: '5', jelly: '要 5 块积木才能开门！' },
+  { id: 'T1-02', type: 'mcq', prompt: '7 − 3 = ?', choices: ['3', '4', '5', '2'], answer: '4', jelly: '门缝开一点啦～' },
   { id: 'T1-03', type: 'mcq', prompt: '5 + 4 = ?', choices: ['8', '9', '10', '7'], answer: '9', jelly: '一起推门！' },
   { id: 'T1-04', type: 'mcq', prompt: '10 − 6 = ?', choices: ['3', '4', '5', '6'], answer: '4', jelly: '还差几步！' },
-  { id: 'T1-05', type: 'mcq', prompt: '1 + 8 = ?', choices: ['7', '8', '9', '10'], answer: '9', jelly: '果冻给你加油！' },
+  { id: 'T1-05', type: 'mcq', prompt: '1 + 8 = ?', choices: ['7', '8', '9', '10'], answer: '9', jelly: '果冻加油！汪！' },
   { id: 'T1-06', type: 'mcq', prompt: '9 − 5 = ?', choices: ['3', '4', '5', '2'], answer: '4' },
   { id: 'T1-07', type: 'mcq', prompt: '6 + 3 = ?', choices: ['8', '9', '10', '7'], answer: '9' },
   { id: 'T1-08', type: 'mcq', prompt: '4 + 4 = ?', choices: ['6', '7', '8', '9'], answer: '8' },

@@ -138,10 +138,10 @@ export const useInventoryStore = defineStore('inventory', () => {
     const fromList = byProfile.value[from] ?? [];
     const have = fromList.find((i) => i.stickerId === stickerId);
     if (!have || have.count <= 0) {
-      return { ok: false, message: '背包里没有这张贴纸哦' };
+      return { ok: false, message: '背包里没有这张～' };
     }
     if (to !== FEED_JELLY_TARGET && to === from) {
-      return { ok: false, message: '不能送给自己呀～' };
+      return { ok: false, message: '送给家人或果冻吧～' };
     }
 
     const nextMap = { ...byProfile.value };
@@ -171,9 +171,9 @@ export const useInventoryStore = defineStore('inventory', () => {
 
     const sticker = getSticker(stickerId);
     if (to === FEED_JELLY_TARGET) {
-      return { ok: true, message: `喂给果冻一张「${sticker?.name ?? stickerId}」`, reaction };
+      return { ok: true, message: `喂果冻：「${sticker?.name ?? stickerId}」`, reaction };
     }
-    return { ok: true, message: `已送给家人「${sticker?.name ?? stickerId}」` };
+    return { ok: true, message: `送给家人啦：「${sticker?.name ?? stickerId}」` };
   }
 
   async function syncInventory(profileKey: ProfileKey) {

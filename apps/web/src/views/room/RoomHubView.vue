@@ -12,7 +12,7 @@ const room = useRoomStore();
 
 const joinCode = ref('');
 const busy = ref(false);
-const tip = ref('邀请家人输入房间码，一起推开大门！');
+const tip = ref('把房间码给家人，一起开门！');
 const errMsg = ref('');
 
 onMounted(() => {
@@ -26,7 +26,7 @@ async function createRoom() {
   if (!profile.activeKey || busy.value) return;
   busy.value = true;
   errMsg.value = '';
-  tip.value = '果冻正在准备房间…';
+  tip.value = '果冻在开门…';
   try {
     const data = await apiCreateRoom({
       profileKey: profile.activeKey,
@@ -63,7 +63,7 @@ async function joinRoom() {
   }
   busy.value = true;
   errMsg.value = '';
-  tip.value = '果冻去敲门啦…';
+  tip.value = '果冻去找家人啦…';
   try {
     const data = await apiJoinRoom({
       code,
@@ -73,7 +73,7 @@ async function joinRoom() {
     });
     if (!data.ok) {
       errMsg.value = data?.error?.message || '加入失败';
-      tip.value = '找不到房间…检查码对不对？';
+      tip.value = '码不对？再对一下～';
       return;
     }
     room.connect({
@@ -132,11 +132,11 @@ async function joinRoom() {
 
     <section class="tip how">
       <div>
-        <strong>两台设备怎么玩？</strong>
+        <strong>几台设备怎么玩？</strong>
         <p>
           1. 浏览器 A 选「甜甜」创建房间，记下大字房间码<br />
           2. 浏览器 B 换角色选「孟赢」或「孟辙」，输入同一码加入<br />
-          3. 双方点准备，房主点开始
+          3. 大家都点准备，房主点开始
         </p>
         <p class="muted">演示固定 familyId = sujia-demo（两端必须相同）</p>
       </div>

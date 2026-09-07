@@ -30,15 +30,15 @@ const onlineCount = computed(
 const jellyText = computed(() => {
   if (room.settled) {
     const stars = room.settled.starsByProfile[profile.activeKey || ''] ?? 0;
-    return `通关结算！你获得 ${stars} 星～汪！`;
+    return `门开啦！你拿到 ${stars} 星～`;
   }
   if (room.lastError) return room.lastError.message;
   if (myAnswer.value) {
     return myAnswer.value.ok
-      ? '答对了！等小伙伴…'
-      : '这题有人错了，大家再试一次！';
+      ? '答对了！等等家人～'
+      : '这题再一起试试～';
   }
-  return '大家一起开门！选对答案～';
+  return '一起选答案，开门！';
 });
 
 const jellyMood = computed(() => {
@@ -161,7 +161,7 @@ function backToHub() {
         @pick="onPick"
       />
       <p v-if="myAnswer" class="wait">
-        {{ myAnswer.ok ? '等待全员答对…' : '有人答错，本题重来' }}
+        {{ myAnswer.ok ? '等等家人～' : '这题再一起来～' }}
       </p>
     </section>
 
@@ -177,7 +177,7 @@ function backToHub() {
           {{ m.displayName }}：{{ room.settled?.starsByProfile[m.profileId] ?? 0 }} 星
         </li>
       </ul>
-      <p class="jelly-line">果冻：太棒了！门开啦！汪汪～</p>
+      <p class="jelly-line">果冻：门开啦！大家真棒！汪～</p>
       <button class="btn-primary tap" type="button" @click="backToMap">回地图</button>
       <button class="ghost tap" type="button" @click="backToHub">再组一队</button>
     </div>

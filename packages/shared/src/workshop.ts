@@ -75,7 +75,7 @@ export const WORKSHOP_TEMPLATES: WorkshopTemplateMeta[] = [
     title: '寻宝门',
     subtitle: '答对开门，帮果冻找宝藏',
     emoji: '🚪',
-    jellyTip: '用积木告诉果冻：开门要几分、走几步！',
+    jellyTip: '改积木：开门分、走几步！',
     defaultBlocks: {
       templateId: 'treasure_door',
       title: '寻宝门',
@@ -91,7 +91,7 @@ export const WORKSHOP_TEMPLATES: WorkshopTemplateMeta[] = [
     title: '口算塔矮版',
     subtitle: '短时口算，爬上矮塔',
     emoji: '🗼',
-    jellyTip: '矮塔也要加油冲！改题量和题型试试～',
+    jellyTip: '改题量题型，冲矮塔！',
     defaultBlocks: {
       templateId: 'math_tower_short',
       title: '口算塔矮版',
@@ -107,7 +107,7 @@ export const WORKSHOP_TEMPLATES: WorkshopTemplateMeta[] = [
     title: '听音三选一',
     subtitle: '听单词，三张卡选一对',
     emoji: '🎧',
-    jellyTip: '点喇叭听一听，再选出正确的卡片！',
+    jellyTip: '听一听，选对卡片！',
     defaultBlocks: {
       templateId: 'listen_pick3',
       title: '听音三选一',
@@ -223,12 +223,21 @@ function shuffleLocal<T>(items: T[], seed: string): T[] {
   return arr;
 }
 
-function uniqueChoices(correct: number, rand: () => number, max = 10): string[] {
+function uniqueChoices(correct: number, rand: () => number, span = 10): string[] {
   const set = new Set<string>([String(correct)]);
-  while (set.size < 4) {
-    const delta = Math.floor(rand() * 5) - 2;
-    const n = Math.max(0, Math.min(max, correct + (delta === 0 ? 1 : delta)));
+  const lo = Math.max(0, correct - span);
+  const hi = Math.max(lo + 3, correct + span);
+  let guard = 0;
+  while (set.size < 4 && guard < 64) {
+    guard += 1;
+    const n = lo + Math.floor(rand() * (hi - lo + 1));
     set.add(String(n));
+  }
+  // Guaranteed fill if RNG collapses (e.g. answer near 0).
+  let pad = 0;
+  while (set.size < 4) {
+    if (!set.has(String(pad))) set.add(String(pad));
+    pad += 1;
   }
   return shuffleLocal([...set], String(rand())).slice(0, 4);
 }
@@ -265,7 +274,7 @@ export function generateWorkshopQuestions(
         emoji: w.emoji,
         choices,
         answer: w.word,
-        jelly: i === 0 ? `开门要 ${cfg.doorScore} 分，果冻先走 ${cfg.jellySteps} 步！` : undefined,
+        jelly: i === 0 ? `开门要 ${cfg.doorScore} 分！走 ${cfg.jellySteps} 步！` : undefined,
       });
     }
     return out;
@@ -289,9 +298,9 @@ export function generateWorkshopQuestions(
       floor: cfg.timed ? i + 1 : undefined,
       jelly:
         i === 0
-          ? `开门要 ${cfg.doorScore} 分！果冻走 ${cfg.jellySteps} 步～`
+          ? `开门要 ${cfg.doorScore} 分！走 ${cfg.jellySteps} 步～`
           : i === count - 1
-            ? `最后一题！答对奖励 ${cfg.rewardStars} 星！`
+            ? `最后一题！奖 ${cfg.rewardStars} 星！`
             : undefined,
     });
   }

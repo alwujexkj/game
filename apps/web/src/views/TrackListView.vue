@@ -63,7 +63,7 @@ function go(level: LevelDef) {
       <img src="/art/dog-mascots-v1.png" alt="果冻" />
       <div>
         <strong>果冻导游</strong>
-        <p>亮着「推荐」的关卡最适合你。也可以挑战其他关卡哦！</p>
+        <p>亮「推荐」的最适合；也可点别的～</p>
       </div>
     </section>
 

@@ -21,12 +21,12 @@ const emit = defineEmits<{
 const jellyLine = computed(() => {
   if (props.droppedSticker) {
     const s = getSticker(props.droppedSticker);
-    return `哇！掉落贴纸「${s?.name ?? props.droppedSticker}」～去背包看看！`;
+    return `贴纸「${s?.name ?? props.droppedSticker}」到手！去背包看～`;
   }
-  if (props.stars >= 3) return '太棒了！满星通关！汪～';
-  if (props.stars >= 2) return '很厉害！再冲一把更高星！';
-  if (props.stars >= 1) return '过关啦！下次可以更好！';
-  return '没关系，我们再试一次！';
+  if (props.stars >= 3) return '满星！门开啦！汪～';
+  if (props.stars >= 2) return '两颗星！门开啦！';
+  if (props.stars >= 1) return '过关啦！汪汪～';
+  return '再来一局？果冻等你～';
 });
 
 function dropStyle() {

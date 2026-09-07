@@ -67,11 +67,11 @@ export const FEED_JELLY_TARGET = 'jelly' as const;
 export type GiftTarget = ProfileKey | typeof FEED_JELLY_TARGET;
 
 export const JELLY_FEED_REACTIONS = [
-  '汪汪！好吃！果冻尾巴摇成螺旋桨～',
-  '嗯嗯，再来一根骨头吧！',
-  '果冻打了个饱嗝：嗝～谢谢你！',
-  '果冻围着你转圈圈，开心到飞起！',
-  '竹叶清香～果冻眯起眼睛说：太幸福了！',
+  '汪！好吃！尾巴转圈～',
+  '再来一根骨头！',
+  '嗝～谢谢你！',
+  '果冻围你转圈圈！',
+  '真香～果冻眯眼笑！',
 ] as const;
 
 export function pickJellyReaction(rng = Math.random): string {

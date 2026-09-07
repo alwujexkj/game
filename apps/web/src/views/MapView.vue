@@ -57,7 +57,7 @@ function onHotspot(id: string) {
     router.push(spot.route);
     return;
   }
-  window.alert('果冻：这个热点还在装修中～');
+  window.alert('果冻：这里还在装修～');
 }
 
 function playPublished(id: string) {
@@ -100,7 +100,7 @@ function playPublished(id: string) {
       <img src="/art/map-avatars-v1.png" alt="果冻提示" />
       <div>
         <strong>果冻提示</strong>
-        <p>点「数学馆」「英语岛」「组队」「工坊」「背包」或「排行」！工坊谷的关卡会出现在下方图钉。</p>
+        <p>想去哪？果冻带路！</p>
       </div>
     </section>
 

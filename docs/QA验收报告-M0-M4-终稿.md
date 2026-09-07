@@ -20,7 +20,7 @@
 | B2 | 地图 | 家长 | /parent | Pass |  |
 | C1 | 五关 | M1 | 可玩连击 | Pass | 答3连击1 |
 | C2 | 五关 | M2 | 3+2 | Pass |  |
-| C3 | 五关 | M4 | 90s塔 | Pass | 确认timer |
+| C3 | 五关 | M4 | 90s塔 | Pass | 答42 确认timer |
 | C4 | 五关 | E1 | 听音 | Pass |  |
 | C5 | 五关 | E3 | 配对 | Pass |  |
 | C6 | 五关 | 掉落 | 进背包 | Blocked | 未观察 |
@@ -32,17 +32,17 @@
 | D6 | 组队 | 重连 | sync | Blocked | 未测 |
 | E1 | 工坊 | 模板 | 三模板 | Pass |  |
 | E2 | 工坊 | 试玩 | 可玩 | Fail | P1卡死90s |
-| E3 | 工坊 | 上地图 | 工坊谷 | Pass |  |
+| E3 | 工坊 | 上地图 | 工坊谷 | Pass | 保存成功+放到地图啦 |
 | E4 | 工坊 | API | offline | Pass | API |
 | F1 | 背包 | 库存 | 贴纸 | Pass |  |
 | F2 | 背包 | 送礼 | 转移 | Pass | 骨头到孟赢 |
-| F3 | 背包 | 喂果冻 | 反应 | Pass | 打嗝 |
+| F3 | 背包 | 喂果冻 | 反应 | Pass | 开心摇尾巴 |
 | F4 | 背包 | API | offline | Pass | API |
-| G1 | 排行 | /rank | 温和 | Pass |  |
+| G1 | 排行 | /rank | 温和周榜 | Pass | 没有输赢只有一起成长 |
 | G2 | 排行 | API | offline | Pass | API |
-| H1 | 家长PIN | 首次设 | 保存 | Blocked | 重访已解锁表 |
+| H1 | 家长PIN | 首次设PIN | 保存进入 | Pass | 1234/1234成功 |
 | H2 | 家长PIN | 总览 | 三孩 | Pass |  |
-| H3 | 家长PIN | 错PIN | 锁定 | Pass | 9999 |
+| H3 | 家长PIN | 错PIN 9999 | 不正确并锁定 | Pass | PIN不正确再试一次 |
 | H4 | 家长PIN | 清数据 | 重设 | Blocked | 未测 |
 | S1 | Server | health | ok | Pass |  |
 | S2 | Server | SPA | 200 | Pass |  |
@@ -53,7 +53,7 @@
 无
 
 ### P1
-1. 工坊试玩卡死浏览器约90s。复现: /workshop 寻宝门 试玩。需重启。
+1. 工坊试玩卡死浏览器约90s。复现: /workshop 寻宝门 试玩。需重启。下一构建必修。
 2. ParentService.verifyPin 明文比 parentPinHash (parent.service.ts)。开 Postgres 前必修。
 
 ## 3. 回归建议（快修后）

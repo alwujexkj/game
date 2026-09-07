@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import {
+  DEMO_FAMILY_ID,
   LEVEL_CATALOG,
   PROFILE_META,
   type LevelId,
@@ -35,12 +36,17 @@ export class ProgressService {
   async ensureCatalog() {
     if (!(await this.ensureDb())) return null;
 
-    let family = await this.prisma.family.findFirst({
-      where: { displayName: DEMO_FAMILY_NAME },
+    let family = await this.prisma.family.findUnique({
+      where: { id: DEMO_FAMILY_ID },
     });
     if (!family) {
+      family = await this.prisma.family.findFirst({
+        where: { displayName: DEMO_FAMILY_NAME },
+      });
+    }
+    if (!family) {
       family = await this.prisma.family.create({
-        data: { displayName: DEMO_FAMILY_NAME },
+        data: { id: DEMO_FAMILY_ID, displayName: DEMO_FAMILY_NAME },
       });
     }
 

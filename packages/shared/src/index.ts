@@ -43,7 +43,7 @@ export const PROFILE_META: Record<
 export const MAP_HOTSPOTS = [
   { id: 'math', label: '数学馆', emoji: '🧮', hint: '口算与应用题', route: '/math' },
   { id: 'english', label: '英语岛', emoji: '🔤', hint: '听音与词汇', route: '/english' },
-  { id: 'team', label: '组队', emoji: '🤝', hint: '房间码一起闯关（M2）', route: null },
+  { id: 'team', label: '组队', emoji: '🤝', hint: '房间码一起闯关', route: '/room' },
   { id: 'workshop', label: '工坊', emoji: '🧱', hint: '自己造关卡（M2）', route: null },
 ] as const;
 
@@ -55,11 +55,11 @@ export type QuestionType =
   | 'word_problem'
   | 'drag_count';
 
-export type LevelId = 'M1' | 'M2' | 'M4' | 'E1' | 'E3';
+export type LevelId = 'M1' | 'M2' | 'M4' | 'E1' | 'E3' | 'T1';
 
 export interface LevelDef {
   id: LevelId;
-  track: 'math' | 'english';
+  track: 'math' | 'english' | 'team';
   title: string;
   subtitle: string;
   emoji: string;
@@ -124,13 +124,23 @@ export const LEVEL_CATALOG: LevelDef[] = [
     questionTypes: ['pair'],
     questionCount: 8,
   },
+  {
+    id: 'T1',
+    track: 'team',
+    title: '双人开门',
+    subtitle: '组队全员答对才能开门',
+    emoji: '🚪',
+    recommendedFor: ['kinder', 'g4', 'g5'],
+    questionTypes: ['mcq'],
+    questionCount: 5,
+  },
 ];
 
 export function getLevel(id: string): LevelDef | undefined {
   return LEVEL_CATALOG.find((l) => l.id === id);
 }
 
-export function levelsForTrack(track: 'math' | 'english'): LevelDef[] {
+export function levelsForTrack(track: 'math' | 'english' | 'team'): LevelDef[] {
   return LEVEL_CATALOG.filter((l) => l.track === track);
 }
 
@@ -169,7 +179,7 @@ import { z } from 'zod';
 
 export const ProfileKeySchema = z.enum(PROFILE_KEYS);
 export const AgeBandSchema = z.enum(AGE_BANDS);
-export const LevelIdSchema = z.enum(['M1', 'M2', 'M4', 'E1', 'E3']);
+export const LevelIdSchema = z.enum(['M1', 'M2', 'M4', 'E1', 'E3', 'T1']);
 
 export const SelectProfileSchema = z.object({
   key: ProfileKeySchema,
@@ -202,3 +212,149 @@ export type SelectProfile = z.infer<typeof SelectProfileSchema>;
 export type HealthResponse = z.infer<typeof HealthResponseSchema>;
 export type ProgressUpsert = z.infer<typeof ProgressUpsertSchema>;
 export type ProgressRecord = z.infer<typeof ProgressRecordSchema>;
+
+// ─── M2 Room co-op ───────────────────────────────────────────
+
+export const DEMO_FAMILY_ID = 'sujia-demo';
+
+export const TEAM_LEVEL_ID = 'T1' as const;
+export type TeamLevelId = typeof TEAM_LEVEL_ID;
+
+export const ROOM_MODES = ['all_must_correct', 'shared_hp', 'relay'] as const;
+export type RoomMode = (typeof ROOM_MODES)[number];
+
+export const ROOM_STATUSES = ['lobby', 'playing', 'settling', 'closed'] as const;
+export type RoomStatus = (typeof ROOM_STATUSES)[number];
+
+export const MAX_ROOM_MEMBERS = 3;
+export const TEAM_QUESTION_TOTAL = 5;
+
+export interface TeamQuestionPayload {
+  id: string;
+  type: 'mcq';
+  prompt: string;
+  choices: Array<string | number>;
+  /** Present only on server; stripped before sending to clients */
+  answer?: string | number;
+  jelly?: string;
+}
+
+/** Deterministic T1 bank — server shuffles by seed so all clients match. */
+export const TEAM_T1_BANK: TeamQuestionPayload[] = [
+  { id: 'T1-01', type: 'mcq', prompt: '3 + 2 = ?', choices: ['4', '5', '6', '3'], answer: '5', jelly: '开门需要 5 块积木！' },
+  { id: 'T1-02', type: 'mcq', prompt: '7 − 3 = ?', choices: ['3', '4', '5', '2'], answer: '4', jelly: '门缝打开一点了～' },
+  { id: 'T1-03', type: 'mcq', prompt: '5 + 4 = ?', choices: ['8', '9', '10', '7'], answer: '9', jelly: '一起推门！' },
+  { id: 'T1-04', type: 'mcq', prompt: '10 − 6 = ?', choices: ['3', '4', '5', '6'], answer: '4', jelly: '还差几步！' },
+  { id: 'T1-05', type: 'mcq', prompt: '1 + 8 = ?', choices: ['7', '8', '9', '10'], answer: '9', jelly: '果冻给你加油！' },
+  { id: 'T1-06', type: 'mcq', prompt: '9 − 5 = ?', choices: ['3', '4', '5', '2'], answer: '4' },
+  { id: 'T1-07', type: 'mcq', prompt: '6 + 3 = ?', choices: ['8', '9', '10', '7'], answer: '9' },
+  { id: 'T1-08', type: 'mcq', prompt: '4 + 4 = ?', choices: ['6', '7', '8', '9'], answer: '8' },
+];
+
+export function publicQuestion(q: TeamQuestionPayload): Omit<TeamQuestionPayload, 'answer'> {
+  const { answer: _a, ...rest } = q;
+  return rest;
+}
+
+/** Simple seeded shuffle (mulberry32). */
+export function seededShuffle<T>(items: T[], seed: string): T[] {
+  let h = 2166136261;
+  for (let i = 0; i < seed.length; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  let state = h >>> 0;
+  const rand = () => {
+    state |= 0;
+    state = (state + 0x6d2b79f5) | 0;
+    let t = Math.imul(state ^ (state >>> 15), 1 | state);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const arr = [...items];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+export function pickTeamQuestions(seed: string, count = TEAM_QUESTION_TOTAL): TeamQuestionPayload[] {
+  return seededShuffle(TEAM_T1_BANK, seed).slice(0, count);
+}
+
+export interface RoomMemberState {
+  profileId: string; // profileKey for M2 demo
+  displayName: string;
+  ready: boolean;
+  online: boolean;
+  socketId?: string | null;
+  joinedAt: string;
+  lastSeenAt: string;
+}
+
+export interface RoomTurnAnswer {
+  ok: boolean;
+  answer?: string | number;
+  clientTs?: number;
+}
+
+export interface RoomTurnState {
+  index: number;
+  total: number;
+  questionId: string;
+  question?: Omit<TeamQuestionPayload, 'answer'>;
+  deadlineAt: string | null;
+  answers: Record<string, RoomTurnAnswer>;
+  sharedHp?: number;
+  relayCursor?: number;
+}
+
+export interface RoomScoreState {
+  starsPending: number;
+  combo: number;
+  perProfile: Record<string, { correct: number; wrong: number }>;
+}
+
+export interface RoomHotState {
+  version: number;
+  code: string;
+  familyId: string;
+  hostProfileId: string;
+  levelId: string;
+  status: RoomStatus;
+  seed: string;
+  mode: RoomMode;
+  expiresAt: string;
+  createdAt: string;
+  members: RoomMemberState[];
+  turnState: RoomTurnState | null;
+  score: RoomScoreState;
+  /** Server-only question list (answers included); never broadcast raw */
+  _questions?: TeamQuestionPayload[];
+}
+
+/** Client-safe snapshot (no answer keys). */
+export type RoomPublicState = Omit<RoomHotState, '_questions'>;
+
+export function toPublicRoomState(state: RoomHotState): RoomPublicState {
+  const { _questions: _q, ...rest } = state;
+  return rest;
+}
+
+export const RoomCreateSchema = z.object({
+  familyId: z.string().min(1).optional().default(DEMO_FAMILY_ID),
+  profileKey: ProfileKeySchema,
+  displayName: z.string().min(1).max(32).optional(),
+  levelId: z.string().optional().default(TEAM_LEVEL_ID),
+});
+
+export const RoomJoinSchema = z.object({
+  code: z.string().min(4).max(8),
+  familyId: z.string().min(1).optional().default(DEMO_FAMILY_ID),
+  profileKey: ProfileKeySchema,
+  displayName: z.string().min(1).max(32).optional(),
+});
+
+export type RoomCreateInput = z.infer<typeof RoomCreateSchema>;
+export type RoomJoinInput = z.infer<typeof RoomJoinSchema>;

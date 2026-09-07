@@ -30,6 +30,7 @@ function hotspotBadge(id: string) {
     const s = progress.trackStars(profile.activeKey, 'english');
     return s > 0 ? `${s}⭐` : '可玩';
   }
+  if (id === 'team') return '可玩';
   return 'M2';
 }
 
@@ -39,9 +40,7 @@ function onHotspot(id: string) {
     router.push(spot.route);
     return;
   }
-  const tip =
-    id === 'team' ? '组队房间码将在 M2 上线' : '造关卡工坊将在 M2 上线';
-  window.alert(`果冻：${tip}`);
+  window.alert('果冻：造关卡工坊将在后续版本上线');
 }
 </script>
 
@@ -80,7 +79,7 @@ function onHotspot(id: string) {
       <img src="/art/map-avatars-v1.png" alt="果冻提示" />
       <div>
         <strong>果冻提示</strong>
-        <p>点「数学馆」或「英语岛」开始闯关！通关星数会挂在热点上。</p>
+        <p>点「数学馆」「英语岛」或「组队」一起闯关！通关星数会挂在热点上。</p>
       </div>
     </section>
 

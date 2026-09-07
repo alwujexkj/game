@@ -1,0 +1,18 @@
+{
+  "name": "sujia-learning-park",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Sujia Learning Park M0 scaffold",
+  "scripts": {
+    "dev:web": "pnpm --filter @sujia/web dev",
+    "dev:server": "pnpm --filter @sujia/server start:dev",
+    "build": "pnpm -r build",
+    "db:generate": "pnpm --filter @sujia/server prisma:generate",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@9.15.0"
+}

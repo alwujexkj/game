@@ -29,6 +29,21 @@ const router = createRouter({
       name: 'english-level',
       component: () => import('../views/LevelPlayView.vue'),
     },
+    {
+      path: '/room',
+      name: 'room-hub',
+      component: () => import('../views/room/RoomHubView.vue'),
+    },
+    {
+      path: '/room/:code',
+      name: 'room-lobby',
+      component: () => import('../views/room/RoomLobbyView.vue'),
+    },
+    {
+      path: '/room/:code/play',
+      name: 'room-play',
+      component: () => import('../views/room/RoomPlayView.vue'),
+    },
   ],
   scrollBehavior() {
     return { top: 0 };

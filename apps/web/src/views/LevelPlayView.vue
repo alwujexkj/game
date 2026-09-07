@@ -1,11 +1,22 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { LEVEL_WEAK_TAG_HINTS, computeStars, getLevel, type LevelId, type StickerId } from '@sujia/shared';
-import { getBank, type BankQuestion } from '../data/banks';
+import {
+  LEVEL_WEAK_TAG_HINTS,
+  PROFILE_META,
+  computeStars,
+  getLevel,
+  type AgeBand,
+  type LevelId,
+  type StickerId,
+} from '@sujia/shared';
+import type { BankQuestion } from '../data/banks';
+import { loadPackQuestions, type PackQuestion } from '../data/packs';
 import { useProfileStore } from '../stores/profile';
 import { useProgressStore } from '../stores/progress';
 import { useInventoryStore } from '../stores/inventory';
+import { useDrillStore } from '../stores/drill';
+import { useDailyStore } from '../stores/daily';
 import JellyBubble from '../components/level/JellyBubble.vue';
 import SettleModal from '../components/level/SettleModal.vue';
 import McqQuestion from '../components/level/McqQuestion.vue';
@@ -14,16 +25,24 @@ import ListenPickQuestion from '../components/level/ListenPickQuestion.vue';
 import PairMatchQuestion from '../components/level/PairMatchQuestion.vue';
 
 const MAX_HEARTS = 3;
+const DRILL_COUNT = 5;
 
 const route = useRoute();
 const router = useRouter();
 const profile = useProfileStore();
 const progress = useProgressStore();
 const inventory = useInventoryStore();
+const drill = useDrillStore();
+const daily = useDailyStore();
 
 const levelId = computed(() => String(route.params.levelId || '') as LevelId);
 const levelDef = computed(() => getLevel(levelId.value));
-const bank = computed(() => getBank(levelId.value));
+const isDrill = computed(() => String(route.query.mode || '') === 'drill');
+const ageBand = computed<AgeBand>(() => {
+  const key = profile.activeKey;
+  return key ? PROFILE_META[key].ageBand : 'g4';
+});
+const pack = computed(() => loadPackQuestions(levelId.value, ageBand.value));
 
 const index = ref(0);
 const hearts = ref(MAX_HEARTS);
@@ -40,10 +59,16 @@ const droppedSticker = ref<StickerId | null>(null);
 const timeLeft = ref(0);
 let timer: ReturnType<typeof setInterval> | null = null;
 
-const questions = computed(() => bank.value?.questions ?? []);
+const questions = computed<PackQuestion[]>(() => {
+  const all = pack.value.questions;
+  if (!isDrill.value) return all;
+  return all.slice(0, Math.min(DRILL_COUNT, all.length));
+});
 const current = computed<BankQuestion | null>(() => questions.value[index.value] ?? null);
 const total = computed(() => questions.value.length);
-const isTimed = computed(() => Boolean(bank.value?.timed || levelDef.value?.timed));
+const isTimed = computed(() =>
+  isDrill.value ? false : Boolean(pack.value.timed || levelDef.value?.timed),
+);
 const towerFloor = computed(() => {
   const q = current.value;
   return typeof q?.floor === 'number' ? q.floor : index.value + 1;
@@ -68,7 +93,7 @@ function resetRun() {
   jellyMood.value = 'happy';
   stopTimer();
   if (isTimed.value) {
-    timeLeft.value = bank.value?.timeLimitSec || levelDef.value?.timeLimitSec || 90;
+    timeLeft.value = pack.value.timeLimitSec || levelDef.value?.timeLimitSec || 90;
     startTimer();
   } else {
     timeLeft.value = 0;
@@ -108,7 +133,19 @@ async function finish(_cleared: boolean) {
   });
   // If ran out of time with some correct answers, still award at least 1 if accuracy ok
   stars.value = s;
-  if (profile.activeKey && s > 0) {
+  if (profile.activeKey && !isDrill.value) {
+    const rec = daily.ensureToday(profile.activeKey);
+    const slot = rec.slots.find((s) => !s.done && s.levelId === levelId.value);
+    if (slot) daily.completeSlot(profile.activeKey, slot.id, s);
+  }
+  if (profile.activeKey && isDrill.value) {
+    const q = questions.value[0];
+    const tag =
+      (Array.isArray(q?.knowledgeTags) && q?.knowledgeTags[0]) ||
+      (LEVEL_WEAK_TAG_HINTS[levelId.value] ?? ['综合练习'])[0];
+    drill.markDrilled(profile.activeKey, String(tag));
+    jellyTip.value = '练完啦！门缝亮了';
+  } else if (profile.activeKey && s > 0) {
     await progress.saveResult({
       profileKey: profile.activeKey,
       levelId: levelId.value,
@@ -144,8 +181,11 @@ function onWrong() {
   combo.value = 0;
   hearts.value = Math.max(0, hearts.value - 1);
   if (profile.activeKey) {
-    const hints = LEVEL_WEAK_TAG_HINTS[levelId.value] ?? ['综合练习'];
-    progress.recordWrong(profile.activeKey, hints[0]);
+    const q = current.value as PackQuestion | null;
+    const tag =
+      (Array.isArray(q?.knowledgeTags) && q.knowledgeTags[0]) ||
+      (LEVEL_WEAK_TAG_HINTS[levelId.value] ?? ['综合练习'])[0];
+    progress.recordWrong(profile.activeKey, String(tag));
   }
   jellyMood.value = 'oops';
   jellyTip.value = hearts.value > 0 ? '再选一次～' : '爱心没了，先看结果～';
@@ -186,15 +226,19 @@ onMounted(() => {
     router.replace('/select');
     return;
   }
-  if (!levelDef.value || !bank.value) {
+  if (!levelDef.value || !pack.value.questions.length) {
     router.replace('/map');
     return;
+  }
+  if (isDrill.value) {
+    jellyTip.value = '短短 5 题，走起！';
+    jellyMood.value = 'cheer';
   }
   resetRun();
 });
 
-watch(levelId, () => {
-  if (levelDef.value && bank.value) resetRun();
+watch([levelId, ageBand, isDrill], () => {
+  if (levelDef.value && pack.value.questions.length) resetRun();
 });
 
 onBeforeUnmount(() => stopTimer());
@@ -205,10 +249,12 @@ onBeforeUnmount(() => stopTimer());
     <header class="hud">
       <button class="exit tap" type="button" @click="router.push(listPath)">←</button>
       <div class="hud-mid">
-        <strong>{{ levelDef.emoji }} {{ levelDef.title }}</strong>
+        <strong>{{ levelDef.emoji }} {{ isDrill ? '弱项快修' : levelDef.title }}</strong>
         <small>
+          <template v-if="!isDrill">{{ pack.packId }} · </template>
           {{ index + 1 }}/{{ total }}
           <template v-if="isTimed"> · ⏱ {{ timeLeft }}s · 塔层 {{ towerFloor }}</template>
+          <template v-else-if="isDrill"> · 快修</template>
         </small>
       </div>
       <div class="hud-right">

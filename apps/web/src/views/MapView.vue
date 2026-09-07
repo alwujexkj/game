@@ -1,17 +1,21 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { MAP_HOTSPOTS, PROFILE_KEYS, PROFILE_META } from '@sujia/shared';
+import { MAP_HOTSPOTS, PROFILE_KEYS, PROFILE_META, getLevel, type LevelId } from '@sujia/shared';
 import { useProfileStore } from '../stores/profile';
 import { useProgressStore } from '../stores/progress';
 import { useWorkshopStore } from '../stores/workshop';
 import { useInventoryStore } from '../stores/inventory';
+import { useDailyStore, type DailySlot } from '../stores/daily';
+import { useDrillStore } from '../stores/drill';
 
 const router = useRouter();
 const profile = useProfileStore();
 const progress = useProgressStore();
 const workshop = useWorkshopStore();
 const inventory = useInventoryStore();
+const daily = useDailyStore();
+const drill = useDrillStore();
 
 onMounted(() => {
   if (!profile.activeKey) router.replace('/select');
@@ -19,8 +23,82 @@ onMounted(() => {
     progress.hydrateFromServer(profile.activeKey);
     workshop.hydrateFromServer();
     inventory.hydrateFromServer(profile.activeKey);
+    daily.ensureToday(profile.activeKey);
   }
 });
+
+const dailyRec = computed(() =>
+  profile.activeKey ? daily.ensureToday(profile.activeKey) : null,
+);
+
+const slotLabel: Record<string, string> = {
+  main: '主课',
+  alt: '换换',
+  social: '一起玩',
+};
+
+function slotTitle(slot: DailySlot): string {
+  if (slot.levelId) {
+    const lv = getLevel(slot.levelId as LevelId);
+    return lv?.title || slot.levelId;
+  }
+  if (slot.action === 'team') return '双人开门';
+  if (slot.action === 'workshop') return '去工坊造一关～';
+  if (slot.action === 'gift') return '送贴纸';
+  return '今日一格';
+}
+
+function openSlot(slot: DailySlot) {
+  if (!profile.activeKey) return;
+  if (slot.done) return;
+  if (slot.kind === 'social') {
+    if (slot.action === 'workshop') router.push('/workshop');
+    else if (slot.action === 'gift') router.push('/bag');
+    else router.push('/room');
+    return;
+  }
+  const id = slot.levelId;
+  if (!id) return;
+  const lv = getLevel(id as LevelId);
+  const base = lv?.track === 'english' ? '/english' : '/math';
+  router.push(`${base}/${id}`);
+}
+
+const assignedTag = computed(() =>
+  profile.activeKey ? drill.getAssignment(profile.activeKey) : null,
+);
+
+const weakTop = computed(() => {
+  if (!profile.activeKey) return null;
+  const tags = progress.topWeakTags(profile.activeKey, 1);
+  return tags[0]?.tag ?? assignedTag.value;
+});
+
+function drillLevelForTag(tag: string | null): { path: string } | null {
+  if (!tag) return null;
+  const t = tag.toLowerCase();
+  let levelId: LevelId = 'M2';
+  if (t.includes('en.') || t.includes('英语') || t.includes('听音') || t.includes('词')) {
+    levelId = t.includes('pair') || t.includes('配对') ? 'E3' : 'E1';
+  } else if (t.includes('mul') || t.includes('乘') || t.includes('除')) {
+    levelId = 'M4';
+  } else if (t.includes('count') || t.includes('数感') || t.includes('骨头')) {
+    levelId = 'M1';
+  }
+  const lv = getLevel(levelId);
+  const base = lv?.track === 'english' ? '/english' : '/math';
+  return { path: `${base}/${levelId}?mode=drill` };
+}
+
+function startQuickDrill() {
+  const tag = assignedTag.value || weakTop.value;
+  const target = drillLevelForTag(tag);
+  if (!target) {
+    window.alert('果冻：今天很顺！去三格吧');
+    return;
+  }
+  router.push(target.path);
+}
 
 const siblings = computed(() =>
   PROFILE_KEYS.filter((k) => k !== profile.activeKey).map((k) => ({
@@ -94,6 +172,39 @@ function playPublished(id: string) {
           <span class="badge">{{ hotspotBadge(spot.id) }}</span>
         </button>
       </div>
+    </section>
+
+    <section class="card daily" v-if="dailyRec">
+      <header class="daily-head">
+        <strong>今日三格</strong>
+        <small>{{ dailyRec.date }} · 星 {{ dailyRec.totalDailyStars }}/4</small>
+      </header>
+      <p class="daily-idle">今日三格亮啦！先点一格试试～</p>
+      <div class="daily-slots">
+        <button
+          v-for="slot in dailyRec.slots"
+          :key="slot.id"
+          class="slot tap"
+          type="button"
+          :class="{ done: slot.done }"
+          @click="openSlot(slot)"
+        >
+          <span class="slot-badge">{{ slotLabel[slot.kind] || slot.kind }}</span>
+          <strong>{{ slotTitle(slot) }}</strong>
+          <small>{{ slot.done ? '一格亮完！汪～' : '点我开始' }}</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="card drill">
+      <header class="daily-head">
+        <strong>弱项快修</strong>
+        <small v-if="assignedTag">家长放了一格～</small>
+      </header>
+      <p>{{ assignedTag ? `家里布置：${assignedTag}` : weakTop ? `这块再练 5 题～（${weakTop}）` : '今天很顺！去三格吧' }}</p>
+      <button class="btn-accent tap" type="button" @click="startQuickDrill">
+        短短 5 题，走起！
+      </button>
     </section>
 
     <section class="tip">
@@ -225,4 +336,39 @@ function playPublished(id: string) {
   border: 2px solid rgba(93, 64, 55, 0.25);
   color: var(--wood-dark);
 }
+.daily-head, .drill .daily-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.45rem;
+}
+.daily-head small { color: #7a8a80; font-weight: 600; }
+.daily-idle { color: #5a7264; margin: 0 0 0.55rem; font-size: 0.92rem; }
+.daily-slots { display: grid; gap: 0.5rem; }
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  text-align: left;
+  background: linear-gradient(180deg, #ffffff, #f7fbf8);
+  border: 2px solid rgba(47, 107, 79, 0.22);
+  padding: 0.7rem 0.85rem;
+  position: relative;
+}
+.slot.done { opacity: 0.65; border-color: rgba(76, 175, 122, 0.45); }
+.slot-badge {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: #e8f5e9;
+  color: var(--bamboo);
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+}
+.slot small { color: #7a8a80; }
+.drill p { color: #5a7264; margin: 0 0 0.55rem; }
+.drill .btn-accent { width: 100%; }
 </style>

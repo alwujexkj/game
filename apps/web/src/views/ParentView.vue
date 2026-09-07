@@ -9,14 +9,32 @@ import {
 } from '@sujia/shared';
 import { useParentAuthStore } from '../stores/parentAuth';
 import { useProgressStore } from '../stores/progress';
+import { useDrillStore } from '../stores/drill';
 
 const router = useRouter();
 const auth = useParentAuthStore();
 const progress = useProgressStore();
+const drill = useDrillStore();
 
 const pin = ref('');
 const confirmPin = ref('');
 const message = ref('');
+const assignDraft = ref<Record<string, string>>({});
+const assignMsg = ref('');
+
+function currentAssign(key: ProfileKey) {
+  return drill.getAssignment(key) || '';
+}
+
+function saveAssign(key: ProfileKey) {
+  const tag = (assignDraft.value[key] ?? currentAssign(key)).trim();
+  if (!tag) {
+    assignMsg.value = '请先填写知识点标签';
+    return;
+  }
+  drill.setAssignment(key, tag);
+  assignMsg.value = `已为 ${PROFILE_META[key].displayName} 布置快修：${tag}`;
+}
 
 const cards = computed(() =>
   PROFILE_KEYS.map((key) => {
@@ -128,7 +146,24 @@ async function submit() {
             {{ t.tag }}<template v-if="t.wrongCount"> · {{ t.wrongCount }}</template>
           </span>
         </div>
+        <div class="assign">
+          <span class="label">布置快修</span>
+          <div class="assign-row">
+            <input
+              class="assign-input"
+              type="text"
+              :placeholder="currentAssign(c.key) || '如：10内加减'"
+              :value="assignDraft[c.key] ?? currentAssign(c.key)"
+              @input="assignDraft[c.key] = ($event.target as HTMLInputElement).value"
+            />
+            <button class="btn-accent tap assign-btn" type="button" @click="saveAssign(c.key)">
+              布置
+            </button>
+          </div>
+          <small v-if="currentAssign(c.key)">当前：{{ currentAssign(c.key) }}</small>
+        </div>
       </section>
+      <p v-if="assignMsg" class="msg">{{ assignMsg }}</p>
     </template>
 
     <button class="back tap" type="button" @click="router.push(auth.isUnlocked ? '/map' : '/')">
@@ -189,6 +224,18 @@ label { font-weight: 700; color: var(--wood-dark); }
   padding: 0.25rem 0.55rem;
   border-radius: 999px;
 }
+.assign { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.assign-row { display: flex; gap: 0.45rem; }
+.assign-input {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 12px;
+  border: 2px solid rgba(47, 107, 79, 0.25);
+  padding: 0.45rem 0.65rem;
+  font-size: 0.95rem;
+}
+.assign-btn { padding: 0.45rem 0.85rem; white-space: nowrap; }
+.assign small { color: #7a8a80; font-weight: 600; }
 .back {
   background: transparent;
   color: var(--wood-dark);

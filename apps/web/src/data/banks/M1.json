@@ -1,0 +1,16 @@
+{
+  "levelId": "M1",
+  "title": "果冻数骨头",
+  "questions": [
+    { "id": "M1-01", "type": "drag_count", "prompt": "数一数，有几根骨头？", "count": 3, "emoji": "🦴", "choices": [2, 3, 4, 5], "answer": 3 },
+    { "id": "M1-02", "type": "drag_count", "prompt": "果冻找到几块饼干？", "count": 5, "emoji": "🍪", "choices": [3, 4, 5, 6], "answer": 5 },
+    { "id": "M1-03", "type": "mcq", "prompt": "哪一个是数字 7？", "choices": ["5", "7", "9", "2"], "answer": "7" },
+    { "id": "M1-04", "type": "drag_count", "prompt": "数一数小星星", "count": 4, "emoji": "⭐", "choices": [2, 3, 4, 6], "answer": 4 },
+    { "id": "M1-05", "type": "drag_count", "prompt": "竹子有几根？", "count": 8, "emoji": "🎋", "choices": [6, 7, 8, 9], "answer": 8 },
+    { "id": "M1-06", "type": "mcq", "prompt": "从 1 数到 10，缺了哪个？1 2 3 4 5 _ 7 8 9 10", "choices": ["5", "6", "8", "9"], "answer": "6" },
+    { "id": "M1-07", "type": "drag_count", "prompt": "数一数小苹果", "count": 2, "emoji": "🍎", "choices": [1, 2, 3, 4], "answer": 2 },
+    { "id": "M1-08", "type": "drag_count", "prompt": "果冻尾巴摇了几下？（数点点）", "count": 6, "emoji": "🔵", "choices": [4, 5, 6, 7], "answer": 6 },
+    { "id": "M1-09", "type": "mcq", "prompt": "哪个数字最大？", "choices": ["3", "9", "1", "6"], "answer": "9" },
+    { "id": "M1-10", "type": "drag_count", "prompt": "数一数小花", "count": 10, "emoji": "🌸", "choices": [8, 9, 10, 7], "answer": 10 }
+  ]
+}

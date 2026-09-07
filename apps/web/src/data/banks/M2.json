@@ -1,0 +1,16 @@
+{
+  "levelId": "M2",
+  "title": "开门要几块",
+  "questions": [
+    { "id": "M2-01", "type": "mcq", "prompt": "3 + 2 = ?", "choices": ["4", "5", "6", "3"], "answer": "5", "jelly": "开门需要 5 块积木！" },
+    { "id": "M2-02", "type": "mcq", "prompt": "7 − 3 = ?", "choices": ["3", "4", "5", "2"], "answer": "4" },
+    { "id": "M2-03", "type": "mcq", "prompt": "5 + 4 = ?", "choices": ["8", "9", "10", "7"], "answer": "9" },
+    { "id": "M2-04", "type": "mcq", "prompt": "10 − 6 = ?", "choices": ["3", "4", "5", "6"], "answer": "4" },
+    { "id": "M2-05", "type": "mcq", "prompt": "1 + 8 = ?", "choices": ["7", "8", "9", "10"], "answer": "9" },
+    { "id": "M2-06", "type": "mcq", "prompt": "9 − 5 = ?", "choices": ["3", "4", "5", "2"], "answer": "4" },
+    { "id": "M2-07", "type": "mcq", "prompt": "6 + 3 = ?", "choices": ["8", "9", "10", "7"], "answer": "9" },
+    { "id": "M2-08", "type": "mcq", "prompt": "4 + 4 = ?", "choices": ["6", "7", "8", "9"], "answer": "8" },
+    { "id": "M2-09", "type": "mcq", "prompt": "8 − 2 = ?", "choices": ["5", "6", "7", "4"], "answer": "6" },
+    { "id": "M2-10", "type": "mcq", "prompt": "2 + 7 = ?", "choices": ["8", "9", "10", "7"], "answer": "9" }
+  ]
+}

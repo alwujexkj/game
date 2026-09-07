@@ -1,0 +1,293 @@
+// 苏家学习乐园 · Prisma Schema v1
+// generator + datasource + enums + models（家庭 / 进度 / 题库 / 工坊 / 房间 / 排行）
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────
+// Enums
+// ─────────────────────────────────────────────
+
+enum ProfileKey {
+  tiantian
+  mengying
+  mengzhe
+}
+
+enum Track {
+  math
+  english
+  team
+  workshop
+}
+
+enum AgeBand {
+  kinder
+  g4
+  g5
+}
+
+enum QuestionType {
+  mcq
+  listen_pick
+  pair
+  fill
+  word_problem
+  drag_count
+}
+
+enum RoomStatus {
+  lobby
+  playing
+  settling
+  closed
+}
+
+enum GiftStatus {
+  pending
+  claimed
+}
+
+// ─────────────────────────────────────────────
+// Family & Profile
+// ─────────────────────────────────────────────
+
+model Family {
+  id              String   @id @default(cuid())
+  displayName     String?
+  parentPinHash   String?
+  familyTokenHash String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  profiles       Profile[]
+  rooms          Room[]
+  workshopLevels WorkshopLevel[]
+  rankSnapshots  RankSnapshot[]
+
+  @@index([familyTokenHash])
+}
+
+model Profile {
+  id         String     @id @default(cuid())
+  familyId   String
+  key        ProfileKey
+  displayName String?
+  avatarId   String?
+  starsTotal Int        @default(0)
+  weekStars  Int        @default(0)
+  bestCombo  Int        @default(0)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  family            Family           @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  progress          Progress[]
+  weakTags          WeakTag[]
+  inventory         InventoryItem[]
+  giftsSent         GiftLog[]        @relation("GiftFrom")
+  giftsReceived     GiftLog[]        @relation("GiftTo")
+  hostedRooms       Room[]           @relation("RoomHost")
+  authoredWorkshops WorkshopLevel[]  @relation("WorkshopAuthor")
+
+  @@unique([familyId, key])
+  @@index([familyId])
+}
+
+// ─────────────────────────────────────────────
+// Levels & Questions
+// ─────────────────────────────────────────────
+
+model Level {
+  id         String   @id @default(cuid())
+  track      Track
+  title      String
+  minAgeBand AgeBand?
+  unlockRule String?
+  configJson Json?
+  sortOrder  Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  questions Question[]
+  progress  Progress[]
+  rooms     Room[]
+
+  @@index([track])
+  @@index([track, minAgeBand])
+}
+
+model Question {
+  id           String       @id @default(cuid())
+  levelId      String?
+  bank         Track // math | english（题库归属；team/workshop 一般不直接挂题）
+  ageBand      AgeBand
+  knowledgeTag String
+  type         QuestionType
+  payloadJson  Json
+  answerJson   Json
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  level Level? @relation(fields: [levelId], references: [id], onDelete: SetNull)
+
+  @@index([bank, ageBand])
+  @@index([knowledgeTag])
+  @@index([levelId])
+  @@index([type])
+}
+
+// ─────────────────────────────────────────────
+// Progress & Weak Tags
+// ─────────────────────────────────────────────
+
+model Progress {
+  id         String    @id @default(cuid())
+  profileId  String
+  levelId    String
+  stars      Int // 1–3；应用层约束
+  bestCombo  Int       @default(0)
+  clearedAt  DateTime?
+  updatedAt  DateTime  @updatedAt
+  createdAt  DateTime  @default(now())
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  level   Level   @relation(fields: [levelId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, levelId])
+  @@index([profileId])
+  @@index([levelId])
+}
+
+model WeakTag {
+  id         String   @id @default(cuid())
+  profileId  String
+  tag        String
+  wrongCount Int      @default(0)
+  updatedAt  DateTime @updatedAt
+  createdAt  DateTime @default(now())
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, tag])
+  @@index([profileId])
+}
+
+// ─────────────────────────────────────────────
+// Stickers / Inventory / Gifts
+// ─────────────────────────────────────────────
+
+model Sticker {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  rarity      Int      @default(1)
+  assetKey    String?
+  createdAt   DateTime @default(now())
+
+  inventory InventoryItem[]
+  giftLogs  GiftLog[]
+}
+
+model InventoryItem {
+  id        String   @id @default(cuid())
+  profileId String
+  stickerId String
+  count     Int      @default(1)
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  sticker Sticker @relation(fields: [stickerId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, stickerId])
+  @@index([profileId])
+}
+
+model GiftLog {
+  id           String     @id @default(cuid())
+  fromProfileId String
+  toProfileId   String
+  stickerId     String
+  status        GiftStatus @default(pending)
+  createdAt     DateTime   @default(now())
+  claimedAt     DateTime?
+
+  fromProfile Profile @relation("GiftFrom", fields: [fromProfileId], references: [id], onDelete: Cascade)
+  toProfile   Profile @relation("GiftTo", fields: [toProfileId], references: [id], onDelete: Cascade)
+  sticker     Sticker @relation(fields: [stickerId], references: [id], onDelete: Cascade)
+
+  @@index([fromProfileId])
+  @@index([toProfileId, status])
+  @@index([createdAt])
+}
+
+// ─────────────────────────────────────────────
+// Workshop
+// ─────────────────────────────────────────────
+
+model WorkshopLevel {
+  id              String   @id @default(cuid())
+  familyId        String
+  authorProfileId String
+  title           String
+  blocksJson      Json
+  compiledConfig  Json?
+  publishedToMap  Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  family Family  @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  author Profile @relation("WorkshopAuthor", fields: [authorProfileId], references: [id], onDelete: Cascade)
+
+  @@index([familyId])
+  @@index([authorProfileId])
+  @@index([familyId, publishedToMap])
+}
+
+// ─────────────────────────────────────────────
+// Room（持久摘要；热状态在 Redis）
+// ─────────────────────────────────────────────
+
+model Room {
+  id            String     @id @default(cuid())
+  code          String     @unique
+  familyId      String
+  hostProfileId String
+  levelId       String?
+  seed          String?
+  status        RoomStatus @default(lobby)
+  expiresAt     DateTime
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  family Family  @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  host   Profile @relation("RoomHost", fields: [hostProfileId], references: [id], onDelete: Cascade)
+  level  Level?  @relation(fields: [levelId], references: [id], onDelete: SetNull)
+
+  @@index([familyId, status])
+  @@index([expiresAt])
+  @@index([hostProfileId])
+}
+
+// ─────────────────────────────────────────────
+// Weekly Rank Snapshot
+// ─────────────────────────────────────────────
+
+model RankSnapshot {
+  id        String   @id @default(cuid())
+  familyId  String
+  weekKey   String // e.g. 2026-W37
+  payloadJson Json // [{ profileId, weekStars, bestCombo, ... }]
+  createdAt DateTime @default(now())
+
+  family Family @relation(fields: [familyId], references: [id], onDelete: Cascade)
+
+  @@unique([familyId, weekKey])
+  @@index([weekKey])
+}

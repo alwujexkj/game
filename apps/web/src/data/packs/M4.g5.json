@@ -1,0 +1,203 @@
+{
+  "packId": "M4.g5",
+  "levelId": "M4",
+  "ageBand": "g5",
+  "title": "口算冲刺塔",
+  "questionCount": 12,
+  "timed": true,
+  "timeLimitSec": 90,
+  "questions": [
+    {
+      "id": "M4.g5-01",
+      "type": "mcq",
+      "prompt": "7 × 8 = ?",
+      "choices": [
+        "54",
+        "56",
+        "64",
+        "48"
+      ],
+      "answer": "56",
+      "floor": 1,
+      "knowledgeTags": [
+        "math.muldiv.table"
+      ]
+    },
+    {
+      "id": "M4.g5-02",
+      "type": "mcq",
+      "prompt": "72 ÷ 8 = ?",
+      "choices": [
+        "8",
+        "9",
+        "7",
+        "6"
+      ],
+      "answer": "9",
+      "floor": 2,
+      "knowledgeTags": [
+        "math.muldiv.table"
+      ]
+    },
+    {
+      "id": "M4.g5-03",
+      "type": "mcq",
+      "prompt": "47 + 26 = ?",
+      "choices": [
+        "71",
+        "72",
+        "73",
+        "74"
+      ],
+      "answer": "73",
+      "floor": 3,
+      "knowledgeTags": [
+        "math.addsub.multi_digit"
+      ]
+    },
+    {
+      "id": "M4.g5-04",
+      "type": "mcq",
+      "prompt": "9 × 6 = ?",
+      "choices": [
+        "54",
+        "56",
+        "63",
+        "45"
+      ],
+      "answer": "54",
+      "floor": 4,
+      "knowledgeTags": [
+        "math.muldiv.table"
+      ]
+    },
+    {
+      "id": "M4.g5-05",
+      "type": "mcq",
+      "prompt": "81 ÷ 9 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "6"
+      ],
+      "answer": "9",
+      "floor": 5,
+      "knowledgeTags": [
+        "math.muldiv.table"
+      ]
+    },
+    {
+      "id": "M4.g5-06",
+      "type": "mcq",
+      "prompt": "6 × 8 = ?",
+      "choices": [
+        "42",
+        "46",
+        "48",
+        "54"
+      ],
+      "answer": "48",
+      "floor": 6,
+      "knowledgeTags": [
+        "math.muldiv.table"
+      ]
+    },
+    {
+      "id": "M4.g5-07",
+      "type": "mcq",
+      "prompt": "35 − 17 = ?",
+      "choices": [
+        "16",
+        "17",
+        "18",
+        "19"
+      ],
+      "answer": "18",
+      "floor": 7,
+      "knowledgeTags": [
+        "math.addsub.multi_digit"
+      ]
+    },
+    {
+      "id": "M4.g5-08",
+      "type": "mcq",
+      "prompt": "7 × 7 = ?",
+      "choices": [
+        "42",
+        "49",
+        "56",
+        "48"
+      ],
+      "answer": "49",
+      "floor": 8,
+      "knowledgeTags": [
+        "math.muldiv.table"
+      ]
+    },
+    {
+      "id": "M4.g5-09",
+      "type": "mcq",
+      "prompt": "45 ÷ 5 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "6"
+      ],
+      "answer": "9",
+      "floor": 9,
+      "knowledgeTags": [
+        "math.muldiv.table"
+      ]
+    },
+    {
+      "id": "M4.g5-10",
+      "type": "mcq",
+      "prompt": "38 + 27 = ?",
+      "choices": [
+        "64",
+        "65",
+        "66",
+        "63"
+      ],
+      "answer": "65",
+      "floor": 10,
+      "knowledgeTags": [
+        "math.addsub.multi_digit"
+      ]
+    },
+    {
+      "id": "M4.g5-11",
+      "type": "mcq",
+      "prompt": "8 × 7 = ?",
+      "choices": [
+        "54",
+        "56",
+        "63",
+        "48"
+      ],
+      "answer": "56",
+      "floor": 11,
+      "knowledgeTags": [
+        "math.muldiv.table"
+      ]
+    },
+    {
+      "id": "M4.g5-12",
+      "type": "mcq",
+      "prompt": "63 ÷ 7 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "6"
+      ],
+      "answer": "9",
+      "floor": 12,
+      "knowledgeTags": [
+        "math.muldiv.table"
+      ]
+    }
+  ]
+}

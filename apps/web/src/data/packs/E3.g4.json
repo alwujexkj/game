@@ -1,0 +1,189 @@
+{
+  "packId": "E3.g4",
+  "levelId": "E3",
+  "ageBand": "g4",
+  "title": "单词配对翻翻乐",
+  "questionCount": 6,
+  "questions": [
+    {
+      "id": "E3.g4-01",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.feelings"
+      ],
+      "pairs": [
+        {
+          "word": "happy",
+          "emoji": "😊",
+          "meaning": "开心"
+        },
+        {
+          "word": "sad",
+          "emoji": "😢",
+          "meaning": "难过"
+        },
+        {
+          "word": "angry",
+          "emoji": "😠",
+          "meaning": "生气"
+        },
+        {
+          "word": "tired",
+          "emoji": "😴",
+          "meaning": "累了"
+        }
+      ]
+    },
+    {
+      "id": "E3.g4-02",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.colors_body"
+      ],
+      "pairs": [
+        {
+          "word": "red",
+          "emoji": "🔴",
+          "meaning": "红色"
+        },
+        {
+          "word": "blue",
+          "emoji": "🔵",
+          "meaning": "蓝色"
+        },
+        {
+          "word": "green",
+          "emoji": "🟢",
+          "meaning": "绿色"
+        },
+        {
+          "word": "yellow",
+          "emoji": "🟡",
+          "meaning": "黄色"
+        }
+      ]
+    },
+    {
+      "id": "E3.g4-03",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.opposites"
+      ],
+      "pairs": [
+        {
+          "word": "big",
+          "emoji": "🐘",
+          "meaning": "大的"
+        },
+        {
+          "word": "small",
+          "emoji": "🐜",
+          "meaning": "小的"
+        },
+        {
+          "word": "fast",
+          "emoji": "🚀",
+          "meaning": "快的"
+        },
+        {
+          "word": "slow",
+          "emoji": "🐢",
+          "meaning": "慢的"
+        }
+      ]
+    },
+    {
+      "id": "E3.g4-04",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.family_home"
+      ],
+      "pairs": [
+        {
+          "word": "school",
+          "emoji": "🏫",
+          "meaning": "学校"
+        },
+        {
+          "word": "home",
+          "emoji": "🏠",
+          "meaning": "家"
+        },
+        {
+          "word": "park",
+          "emoji": "🏞️",
+          "meaning": "公园"
+        },
+        {
+          "word": "shop",
+          "emoji": "🛒",
+          "meaning": "商店"
+        }
+      ]
+    },
+    {
+      "id": "E3.g4-05",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.actions"
+      ],
+      "pairs": [
+        {
+          "word": "run",
+          "emoji": "🏃",
+          "meaning": "跑"
+        },
+        {
+          "word": "jump",
+          "emoji": "🦘",
+          "meaning": "跳"
+        },
+        {
+          "word": "swim",
+          "emoji": "🏊",
+          "meaning": "游泳"
+        },
+        {
+          "word": "read",
+          "emoji": "📖",
+          "meaning": "读"
+        }
+      ]
+    },
+    {
+      "id": "E3.g4-06",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.g4_core"
+      ],
+      "pairs": [
+        {
+          "word": "one",
+          "emoji": "1️⃣",
+          "meaning": "一"
+        },
+        {
+          "word": "two",
+          "emoji": "2️⃣",
+          "meaning": "二"
+        },
+        {
+          "word": "three",
+          "emoji": "3️⃣",
+          "meaning": "三"
+        },
+        {
+          "word": "four",
+          "emoji": "4️⃣",
+          "meaning": "四"
+        }
+      ]
+    }
+  ]
+}

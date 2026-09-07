@@ -1,0 +1,162 @@
+{
+  "packId": "M2.g4",
+  "levelId": "M2",
+  "ageBand": "g4",
+  "title": "开门要几块",
+  "questionCount": 10,
+  "questions": [
+    {
+      "id": "M2.g4-01",
+      "type": "mcq",
+      "prompt": "8 + 5 = ?",
+      "choices": [
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "answer": "13",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "先凑十再加！"
+    },
+    {
+      "id": "M2.g4-02",
+      "type": "mcq",
+      "prompt": "6 + 7 = ?",
+      "choices": [
+        "12",
+        "13",
+        "14",
+        "11"
+      ],
+      "answer": "13",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ]
+    },
+    {
+      "id": "M2.g4-03",
+      "type": "mcq",
+      "prompt": "9 + 4 = ?",
+      "choices": [
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "answer": "13",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ]
+    },
+    {
+      "id": "M2.g4-04",
+      "type": "mcq",
+      "prompt": "7 + 8 = ?",
+      "choices": [
+        "14",
+        "15",
+        "16",
+        "13"
+      ],
+      "answer": "15",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ]
+    },
+    {
+      "id": "M2.g4-05",
+      "type": "mcq",
+      "prompt": "13 − 6 = ?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "7",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "破十想一想～"
+    },
+    {
+      "id": "M2.g4-06",
+      "type": "mcq",
+      "prompt": "15 − 7 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "6"
+      ],
+      "answer": "8",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ]
+    },
+    {
+      "id": "M2.g4-07",
+      "type": "mcq",
+      "prompt": "12 − 5 = ?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "5"
+      ],
+      "answer": "7",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ]
+    },
+    {
+      "id": "M2.g4-08",
+      "type": "mcq",
+      "prompt": "5 + 9 = ?",
+      "choices": [
+        "13",
+        "14",
+        "15",
+        "12"
+      ],
+      "answer": "14",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ]
+    },
+    {
+      "id": "M2.g4-09",
+      "type": "mcq",
+      "prompt": "14 − 8 = ?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "6",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ]
+    },
+    {
+      "id": "M2.g4-10",
+      "type": "mcq",
+      "prompt": "8 + 6 = ?",
+      "choices": [
+        "13",
+        "14",
+        "15",
+        "12"
+      ],
+      "answer": "14",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "门栓松开啦！"
+    }
+  ]
+}

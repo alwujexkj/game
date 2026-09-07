@@ -1,0 +1,165 @@
+{
+  "packId": "E1.k",
+  "levelId": "E1",
+  "ageBand": "kinder",
+  "title": "听音找卡片",
+  "questionCount": 6,
+  "questions": [
+    {
+      "id": "E1.k-01",
+      "type": "listen_pick",
+      "word": "apple",
+      "phonetic": "/ˈæpl/",
+      "meaning": "苹果",
+      "emoji": "🍎",
+      "choices": [
+        {
+          "word": "apple",
+          "emoji": "🍎"
+        },
+        {
+          "word": "banana",
+          "emoji": "🍌"
+        },
+        {
+          "word": "cat",
+          "emoji": "🐱"
+        }
+      ],
+      "answer": "apple",
+      "knowledgeTags": [
+        "eng.vocab.objects"
+      ]
+    },
+    {
+      "id": "E1.k-02",
+      "type": "listen_pick",
+      "word": "dog",
+      "phonetic": "/dɔːɡ/",
+      "meaning": "狗",
+      "emoji": "🐶",
+      "choices": [
+        {
+          "word": "dog",
+          "emoji": "🐶"
+        },
+        {
+          "word": "duck",
+          "emoji": "🦆"
+        },
+        {
+          "word": "sun",
+          "emoji": "☀️"
+        }
+      ],
+      "answer": "dog",
+      "knowledgeTags": [
+        "eng.vocab.animals_food"
+      ]
+    },
+    {
+      "id": "E1.k-03",
+      "type": "listen_pick",
+      "word": "sun",
+      "phonetic": "/sʌn/",
+      "meaning": "太阳",
+      "emoji": "☀️",
+      "choices": [
+        {
+          "word": "star",
+          "emoji": "⭐"
+        },
+        {
+          "word": "sun",
+          "emoji": "☀️"
+        },
+        {
+          "word": "ball",
+          "emoji": "⚽"
+        }
+      ],
+      "answer": "sun",
+      "knowledgeTags": [
+        "eng.vocab.objects"
+      ]
+    },
+    {
+      "id": "E1.k-04",
+      "type": "listen_pick",
+      "word": "cat",
+      "phonetic": "/kæt/",
+      "meaning": "猫",
+      "emoji": "🐱",
+      "choices": [
+        {
+          "word": "car",
+          "emoji": "🚗"
+        },
+        {
+          "word": "cat",
+          "emoji": "🐱"
+        },
+        {
+          "word": "cup",
+          "emoji": "☕"
+        }
+      ],
+      "answer": "cat",
+      "knowledgeTags": [
+        "eng.vocab.animals_food"
+      ]
+    },
+    {
+      "id": "E1.k-05",
+      "type": "listen_pick",
+      "word": "fish",
+      "phonetic": "/fɪʃ/",
+      "meaning": "鱼",
+      "emoji": "🐟",
+      "choices": [
+        {
+          "word": "frog",
+          "emoji": "🐸"
+        },
+        {
+          "word": "fish",
+          "emoji": "🐟"
+        },
+        {
+          "word": "fan",
+          "emoji": "🪭"
+        }
+      ],
+      "answer": "fish",
+      "knowledgeTags": [
+        "eng.vocab.animals_food"
+      ]
+    },
+    {
+      "id": "E1.k-06",
+      "type": "listen_pick",
+      "word": "ball",
+      "phonetic": "/bɔːl/",
+      "meaning": "球",
+      "emoji": "⚽",
+      "choices": [
+        {
+          "word": "ball",
+          "emoji": "⚽"
+        },
+        {
+          "word": "bell",
+          "emoji": "🔔"
+        },
+        {
+          "word": "book",
+          "emoji": "📘"
+        }
+      ],
+      "answer": "ball",
+      "knowledgeTags": [
+        "eng.vocab.objects"
+      ]
+    }
+  ]
+}

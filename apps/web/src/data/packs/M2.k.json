@@ -1,0 +1,133 @@
+{
+  "packId": "M2.k",
+  "levelId": "M2",
+  "ageBand": "kinder",
+  "title": "开门要几块",
+  "questionCount": 8,
+  "questions": [
+    {
+      "id": "M2.k-01",
+      "type": "mcq",
+      "prompt": "3 + 2 = ?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "3"
+      ],
+      "answer": "5",
+      "knowledgeTags": [
+        "math.addsub.within_5"
+      ],
+      "jelly": "开门需要 5 块积木！"
+    },
+    {
+      "id": "M2.k-02",
+      "type": "mcq",
+      "prompt": "7 − 3 = ?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "2"
+      ],
+      "answer": "4",
+      "knowledgeTags": [
+        "math.addsub.within_5"
+      ]
+    },
+    {
+      "id": "M2.k-03",
+      "type": "mcq",
+      "prompt": "1 + 8 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "9",
+      "knowledgeTags": [
+        "math.addsub.within_5"
+      ]
+    },
+    {
+      "id": "M2.k-04",
+      "type": "mcq",
+      "prompt": "9 − 5 = ?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "2"
+      ],
+      "answer": "4",
+      "knowledgeTags": [
+        "math.addsub.within_5"
+      ]
+    },
+    {
+      "id": "M2.k-05",
+      "type": "mcq",
+      "prompt": "4 + 4 = ?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "8",
+      "knowledgeTags": [
+        "math.addsub.within_5",
+        "math.addsub.part_whole_5"
+      ],
+      "jelly": "两堆积木一样高～"
+    },
+    {
+      "id": "M2.k-06",
+      "type": "mcq",
+      "prompt": "6 − 2 = ?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "2"
+      ],
+      "answer": "4",
+      "knowledgeTags": [
+        "math.addsub.within_5"
+      ]
+    },
+    {
+      "id": "M2.k-07",
+      "type": "mcq",
+      "prompt": "5 + 3 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "6"
+      ],
+      "answer": "8",
+      "knowledgeTags": [
+        "math.addsub.within_5"
+      ]
+    },
+    {
+      "id": "M2.k-08",
+      "type": "mcq",
+      "prompt": "10 − 4 = ?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "4"
+      ],
+      "answer": "6",
+      "knowledgeTags": [
+        "math.addsub.within_10"
+      ],
+      "jelly": "门开一条缝啦！"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "packId": "T1.g4",
+  "levelId": "T1",
+  "ageBand": "g4",
+  "title": "双人开门",
+  "questionCount": 5,
+  "questions": [
+    {
+      "id": "T1.g4-01",
+      "type": "mcq",
+      "prompt": "8 + 5 = ?",
+      "choices": [
+        "12",
+        "13",
+        "14",
+        "11"
+      ],
+      "answer": "13",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "开门需要 13 分！"
+    },
+    {
+      "id": "T1.g4-02",
+      "type": "mcq",
+      "prompt": "12 − 4 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "6"
+      ],
+      "answer": "8",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "门缝打开一点了～"
+    },
+    {
+      "id": "T1.g4-03",
+      "type": "mcq",
+      "prompt": "9 + 6 = ?",
+      "choices": [
+        "14",
+        "15",
+        "16",
+        "13"
+      ],
+      "answer": "15",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "一起推门！"
+    },
+    {
+      "id": "T1.g4-04",
+      "type": "mcq",
+      "prompt": "16 − 9 = ?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "5"
+      ],
+      "answer": "7",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "还差几步！"
+    },
+    {
+      "id": "T1.g4-05",
+      "type": "mcq",
+      "prompt": "7 + 7 = ?",
+      "choices": [
+        "13",
+        "14",
+        "15",
+        "12"
+      ],
+      "answer": "14",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "果冻给你加油！"
+    }
+  ]
+}

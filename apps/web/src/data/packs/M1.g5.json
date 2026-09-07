@@ -1,0 +1,106 @@
+{
+  "packId": "M1.g5",
+  "levelId": "M1",
+  "ageBand": "g5",
+  "title": "果冻数骨头·小老师",
+  "questionCount": 6,
+  "intro": "带弟弟妹妹数一数～",
+  "questions": [
+    {
+      "id": "M1.g5-01",
+      "type": "mcq",
+      "prompt": "哪个最大？",
+      "choices": [
+        "7",
+        "2",
+        "9",
+        "5"
+      ],
+      "answer": "9",
+      "knowledgeTags": [
+        "math.number.compare_10"
+      ],
+      "jelly": "小老师讲得真清楚！"
+    },
+    {
+      "id": "M1.g5-02",
+      "type": "drag_count",
+      "prompt": "给弟弟示范：数竹子",
+      "count": 7,
+      "emoji": "🎋",
+      "choices": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "answer": 7,
+      "knowledgeTags": [
+        "math.number.count_1_10"
+      ]
+    },
+    {
+      "id": "M1.g5-03",
+      "type": "mcq",
+      "prompt": "1 到 10 缺了谁？1 2 3 _ 5 6 7 8 9 10",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "4",
+      "knowledgeTags": [
+        "math.number.count_1_10"
+      ]
+    },
+    {
+      "id": "M1.g5-04",
+      "type": "drag_count",
+      "prompt": "一起数小花",
+      "count": 9,
+      "emoji": "🌸",
+      "choices": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "answer": 9,
+      "knowledgeTags": [
+        "math.number.count_1_10"
+      ]
+    },
+    {
+      "id": "M1.g5-05",
+      "type": "mcq",
+      "prompt": "哪个最小？",
+      "choices": [
+        "6",
+        "1",
+        "4",
+        "3"
+      ],
+      "answer": "1",
+      "knowledgeTags": [
+        "math.number.compare_10"
+      ]
+    },
+    {
+      "id": "M1.g5-06",
+      "type": "mcq",
+      "prompt": "数字 8 是哪一个？",
+      "choices": [
+        "6",
+        "9",
+        "8",
+        "5"
+      ],
+      "answer": "8",
+      "knowledgeTags": [
+        "math.number.count_1_10"
+      ],
+      "jelly": "示范完成！"
+    }
+  ]
+}

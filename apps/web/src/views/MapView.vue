@@ -4,14 +4,19 @@ import { useRouter } from 'vue-router';
 import { MAP_HOTSPOTS, PROFILE_KEYS, PROFILE_META } from '@sujia/shared';
 import { useProfileStore } from '../stores/profile';
 import { useProgressStore } from '../stores/progress';
+import { useWorkshopStore } from '../stores/workshop';
 
 const router = useRouter();
 const profile = useProfileStore();
 const progress = useProgressStore();
+const workshop = useWorkshopStore();
 
 onMounted(() => {
   if (!profile.activeKey) router.replace('/select');
-  else progress.hydrateFromServer(profile.activeKey);
+  else {
+    progress.hydrateFromServer(profile.activeKey);
+    workshop.hydrateFromServer();
+  }
 });
 
 const siblings = computed(() =>
@@ -31,7 +36,11 @@ function hotspotBadge(id: string) {
     return s > 0 ? `${s}⭐` : '可玩';
   }
   if (id === 'team') return '可玩';
-  return 'M2';
+  if (id === 'workshop') {
+    const n = workshop.published.length;
+    return n > 0 ? `${n}关` : '可玩';
+  }
+  return '…';
 }
 
 function onHotspot(id: string) {
@@ -40,7 +49,11 @@ function onHotspot(id: string) {
     router.push(spot.route);
     return;
   }
-  window.alert('果冻：造关卡工坊将在后续版本上线');
+  window.alert('果冻：这个热点还在装修中～');
+}
+
+function playPublished(id: string) {
+  router.push(`/workshop/${id}/play`);
 }
 </script>
 
@@ -79,7 +92,26 @@ function onHotspot(id: string) {
       <img src="/art/map-avatars-v1.png" alt="果冻提示" />
       <div>
         <strong>果冻提示</strong>
-        <p>点「数学馆」「英语岛」或「组队」一起闯关！通关星数会挂在热点上。</p>
+        <p>点「数学馆」「英语岛」「组队」或「工坊」！工坊谷的关卡会出现在下方图钉。</p>
+      </div>
+    </section>
+
+    <section class="pins card valley" v-if="workshop.published.length">
+      <h2>🏞 工坊谷</h2>
+      <div class="pin-row">
+        <button
+          v-for="lv in workshop.published"
+          :key="lv.id"
+          class="pin tap pin-btn"
+          type="button"
+          @click="playPublished(lv.id)"
+        >
+          <span class="dot online" />
+          <div>
+            <strong>{{ lv.compiledConfig.emoji }} {{ lv.title }}</strong>
+            <small>家庭可玩 · 点我闯关</small>
+          </div>
+        </button>
       </div>
     </section>
 
@@ -162,6 +194,18 @@ function onHotspot(id: string) {
   background: #9e9e9e;
   box-shadow: 0 0 0 4px rgba(158, 158, 158, 0.2);
 }
+.dot.online {
+  background: var(--bamboo-light);
+  box-shadow: 0 0 0 4px rgba(76, 175, 122, 0.25);
+}
+.pin-btn {
+  width: 100%;
+  background: transparent;
+  text-align: left;
+  padding: 0.35rem 0;
+  min-height: 48px;
+}
+.valley h2 { color: var(--bamboo); }
 .pin small { display: block; color: #7a8a80; }
 .bottom { display: flex; gap: 0.75rem; }
 .ghost {

@@ -44,7 +44,7 @@ export const MAP_HOTSPOTS = [
   { id: 'math', label: '数学馆', emoji: '🧮', hint: '口算与应用题', route: '/math' },
   { id: 'english', label: '英语岛', emoji: '🔤', hint: '听音与词汇', route: '/english' },
   { id: 'team', label: '组队', emoji: '🤝', hint: '房间码一起闯关', route: '/room' },
-  { id: 'workshop', label: '工坊', emoji: '🧱', hint: '自己造关卡（M2）', route: null },
+  { id: 'workshop', label: '工坊', emoji: '🧱', hint: '自己造关卡', route: '/workshop' },
 ] as const;
 
 export type QuestionType =
@@ -358,3 +358,30 @@ export const RoomJoinSchema = z.object({
 
 export type RoomCreateInput = z.infer<typeof RoomCreateSchema>;
 export type RoomJoinInput = z.infer<typeof RoomJoinSchema>;
+
+
+// ─── M3 Workshop ─────────────────────────────────────────────
+export {
+  WORKSHOP_QUESTION_KINDS,
+  WORKSHOP_QUESTION_KIND_LABEL,
+  WORKSHOP_TEMPLATE_IDS,
+  WORKSHOP_TEMPLATES,
+  WORKSHOP_WORD_BANK,
+  WorkshopBlocksSchema,
+  WorkshopCompiledConfigSchema,
+  WorkshopLevelUpsertSchema,
+  WorkshopLevelRecordSchema,
+  WorkshopPublishSchema,
+  getWorkshopTemplate,
+  compileWorkshopBlocks,
+  generateWorkshopQuestions,
+  type WorkshopQuestionKind,
+  type WorkshopTemplateId,
+  type WorkshopBlocks,
+  type WorkshopCompiledConfig,
+  type WorkshopTemplateMeta,
+  type WorkshopGeneratedQuestion,
+  type WorkshopLevelUpsert,
+  type WorkshopLevelRecord,
+  type WorkshopPublish,
+} from './workshop';

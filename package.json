@@ -2,7 +2,7 @@
   "name": "sujia-learning-park",
   "private": true,
   "version": "0.1.0",
-  "description": "Sujia Learning Park M2 multi-device room co-op",
+  "description": "Sujia Learning Park M3 level workshop",
   "scripts": {
     "dev:web": "pnpm --filter @sujia/web dev",
     "dev:server": "pnpm --filter @sujia/server start:dev",

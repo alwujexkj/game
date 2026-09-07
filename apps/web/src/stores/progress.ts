@@ -10,7 +10,27 @@ import {
 } from '@sujia/shared';
 
 const STORAGE_KEY = 'sujia.progress.v1';
+const WEAK_TAG_KEY = 'sujia.weakTags.v1';
 const API_BASE = import.meta.env.VITE_API_BASE || '';
+
+/** profileKey -> tag -> wrongCount */
+type WeakTagMap = Record<string, Record<string, number>>;
+
+function readWeakTags(): WeakTagMap {
+  try {
+    const raw = localStorage.getItem(WEAK_TAG_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as WeakTagMap;
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function writeWeakTags(map: WeakTagMap) {
+  localStorage.setItem(WEAK_TAG_KEY, JSON.stringify(map));
+}
+
 
 type ProgressMap = Record<string, ProgressRecord>; // key = `${profileKey}:${levelId}`
 
@@ -49,6 +69,7 @@ function writeLocal(map: ProgressMap) {
 
 export const useProgressStore = defineStore('progress', () => {
   const records = ref<ProgressMap>(readLocal());
+  const weakTags = ref<WeakTagMap>(readWeakTags());
   const syncing = ref(false);
   const lastError = ref<string | null>(null);
 
@@ -146,12 +167,51 @@ export const useProgressStore = defineStore('progress', () => {
     }
   }
 
+
+  function recordWrong(profileKey: ProfileKey, tag: string) {
+    const t = tag.trim() || '综合练习';
+    const prev = weakTags.value[profileKey] ?? {};
+    const next = { ...prev, [t]: (prev[t] ?? 0) + 1 };
+    weakTags.value = { ...weakTags.value, [profileKey]: next };
+    writeWeakTags(weakTags.value);
+  }
+
+  /** Top weak tags for parent dashboard (no full dump). */
+  function topWeakTags(profileKey: ProfileKey, limit = 3): Array<{ tag: string; wrongCount: number }> {
+    const map = weakTags.value[profileKey] ?? {};
+    return Object.entries(map)
+      .map(([tag, wrongCount]) => ({ tag, wrongCount }))
+      .sort((a, b) => b.wrongCount - a.wrongCount)
+      .slice(0, limit);
+  }
+
+  function weekActivity(profileKey: ProfileKey | null): {
+    clears: number;
+    stars: number;
+    bestCombo: number;
+  } {
+    if (!profileKey) return { clears: 0, stars: 0, bestCombo: 0 };
+    const weekAgo = Date.now() - 7 * 24 * 3600 * 1000;
+    const list = forProfile.value(profileKey).filter((r) => {
+      if (!r.clearedAt) return false;
+      return new Date(r.clearedAt).getTime() >= weekAgo;
+    });
+    const all = forProfile.value(profileKey);
+    const use = list.length ? list : all;
+    return {
+      clears: use.filter((r) => r.clearedAt).length,
+      stars: use.reduce((s, r) => s + r.stars, 0),
+      bestCombo: all.reduce((m, r) => Math.max(m, r.bestCombo), 0),
+    };
+  }
+
   function ageBandOf(profileKey: ProfileKey) {
     return PROFILE_META[profileKey].ageBand;
   }
 
   return {
     records,
+    weakTags,
     syncing,
     lastError,
     forProfile,
@@ -160,6 +220,9 @@ export const useProgressStore = defineStore('progress', () => {
     trackStars,
     saveResult,
     hydrateFromServer,
+    recordWrong,
+    topWeakTags,
+    weekActivity,
     ageBandOf,
   };
 });

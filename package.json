@@ -2,7 +2,7 @@
   "name": "sujia-learning-park",
   "private": true,
   "version": "0.1.0",
-  "description": "Sujia Learning Park M3 level workshop",
+  "description": "Sujia Learning Park M4 social + parent",
   "scripts": {
     "dev:web": "pnpm --filter @sujia/web dev",
     "dev:server": "pnpm --filter @sujia/server start:dev",

@@ -45,6 +45,8 @@ export const MAP_HOTSPOTS = [
   { id: 'english', label: '英语岛', emoji: '🔤', hint: '听音与词汇', route: '/english' },
   { id: 'team', label: '组队', emoji: '🤝', hint: '房间码一起闯关', route: '/room' },
   { id: 'workshop', label: '工坊', emoji: '🧱', hint: '自己造关卡', route: '/workshop' },
+  { id: 'bag', label: '背包', emoji: '🎁', hint: '贴纸互赠与喂果冻', route: '/bag' },
+  { id: 'rank', label: '排行', emoji: '🏆', hint: '轻松家庭小排行', route: '/rank' },
 ] as const;
 
 export type QuestionType =
@@ -385,3 +387,35 @@ export {
   type WorkshopLevelRecord,
   type WorkshopPublish,
 } from './workshop';
+
+// ─── M4 Stickers / Gifts / Rank helpers ──────────────────────
+export {
+  STICKER_IDS,
+  STICKER_CATALOG,
+  STICKER_BY_ID,
+  STICKER_DROP_CHANCE,
+  FEED_JELLY_TARGET,
+  JELLY_FEED_REACTIONS,
+  LEVEL_WEAK_TAG_HINTS,
+  getSticker,
+  pickRandomStickerDrop,
+  pickJellyReaction,
+  weekKeyOf,
+  startOfIsoWeek,
+  StickerIdSchema,
+  InventoryItemSchema,
+  GiftSendSchema,
+  GiftLogSchema,
+  ParentPinSetSchema,
+  ParentPinVerifySchema,
+  ParentDashboardQuerySchema,
+  InventoryUpsertSchema,
+  ParentPinHashSchema,
+  type StickerId,
+  type StickerDef,
+  type InventoryItem,
+  type InventoryUpsert,
+  type GiftTarget,
+  type GiftSend,
+  type GiftLogEntry,
+} from './stickers';

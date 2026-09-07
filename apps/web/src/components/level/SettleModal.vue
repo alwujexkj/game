@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { getSticker, type StickerId } from '@sujia/shared';
 
 const props = defineProps<{
   stars: number;
@@ -7,20 +8,35 @@ const props = defineProps<{
   correct: number;
   total: number;
   levelTitle: string;
+  droppedSticker?: StickerId | null;
 }>();
 
 const emit = defineEmits<{
   replay: [];
   back: [];
   map: [];
+  bag: [];
 }>();
 
 const jellyLine = computed(() => {
+  if (props.droppedSticker) {
+    const s = getSticker(props.droppedSticker);
+    return `哇！掉落贴纸「${s?.name ?? props.droppedSticker}」～去背包看看！`;
+  }
   if (props.stars >= 3) return '太棒了！满星通关！汪～';
   if (props.stars >= 2) return '很厉害！再冲一把更高星！';
   if (props.stars >= 1) return '过关啦！下次可以更好！';
   return '没关系，我们再试一次！';
 });
+
+function dropStyle() {
+  const s = props.droppedSticker ? getSticker(props.droppedSticker) : null;
+  return {
+    backgroundImage: 'url(/art/gift-stickers-v1.png)',
+    backgroundSize: '300% 300%',
+    backgroundPosition: s?.sheetPos ?? '50% 50%',
+  };
+}
 </script>
 
 <template>
@@ -33,9 +49,19 @@ const jellyLine = computed(() => {
         <span v-for="i in 3" :key="i">{{ i <= stars ? '⭐' : '☆' }}</span>
       </div>
       <p class="stats">答对 {{ correct }}/{{ total }} · 最高连击 {{ combo }}</p>
+
+      <div v-if="droppedSticker" class="drop">
+        <span class="drop-art" :style="dropStyle()" />
+        <div>
+          <strong>获得贴纸</strong>
+          <p>{{ getSticker(droppedSticker)?.name }}</p>
+        </div>
+      </div>
+
       <p class="jelly-line">果冻：{{ jellyLine }}</p>
       <div class="actions">
         <button class="btn-primary tap" type="button" @click="emit('replay')">再玩一次</button>
+        <button v-if="droppedSticker" class="btn-accent tap" type="button" @click="emit('bag')">去背包</button>
         <button class="btn-accent tap" type="button" @click="emit('map')">回地图</button>
         <button class="ghost tap" type="button" @click="emit('back')">关卡列表</button>
       </div>
@@ -76,6 +102,25 @@ const jellyLine = computed(() => {
 .title { color: #5a7264; }
 .stars { font-size: 2rem; letter-spacing: 0.15em; }
 .stats { color: #5a7264; font-weight: 600; }
+.drop {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  background: #fff8e1;
+  border-radius: 14px;
+  padding: 0.55rem 0.75rem;
+  border: 2px dashed rgba(230, 81, 0, 0.35);
+}
+.drop-art {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+.drop strong { color: #e65100; display: block; }
+.drop p { margin: 0.15rem 0 0; color: var(--wood-dark); font-weight: 700; }
 .jelly-line {
   background: var(--bamboo-pale);
   border-radius: 12px;

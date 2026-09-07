@@ -7,6 +7,8 @@ const router = createRouter({
     { path: '/select', name: 'select', component: () => import('../views/SelectView.vue') },
     { path: '/map', name: 'map', component: () => import('../views/MapView.vue') },
     { path: '/parent', name: 'parent', component: () => import('../views/ParentView.vue') },
+    { path: '/bag', name: 'bag', component: () => import('../views/BagView.vue') },
+    { path: '/rank', name: 'rank', component: () => import('../views/RankView.vue') },
     {
       path: '/math',
       name: 'math',

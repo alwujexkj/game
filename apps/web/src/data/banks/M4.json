@@ -1,0 +1,20 @@
+{
+  "levelId": "M4",
+  "title": "口算冲刺塔",
+  "timed": true,
+  "timeLimitSec": 90,
+  "questions": [
+    { "id": "M4-01", "type": "mcq", "prompt": "6 × 7 = ?", "choices": ["36", "42", "48", "40"], "answer": "42", "floor": 1 },
+    { "id": "M4-02", "type": "mcq", "prompt": "8 × 4 = ?", "choices": ["24", "28", "32", "36"], "answer": "32", "floor": 2 },
+    { "id": "M4-03", "type": "mcq", "prompt": "56 ÷ 7 = ?", "choices": ["6", "7", "8", "9"], "answer": "8", "floor": 3 },
+    { "id": "M4-04", "type": "mcq", "prompt": "23 + 18 = ?", "choices": ["39", "41", "42", "40"], "answer": "41", "floor": 4 },
+    { "id": "M4-05", "type": "mcq", "prompt": "9 × 5 = ?", "choices": ["40", "45", "54", "35"], "answer": "45", "floor": 5 },
+    { "id": "M4-06", "type": "mcq", "prompt": "72 ÷ 8 = ?", "choices": ["8", "9", "7", "6"], "answer": "9", "floor": 6 },
+    { "id": "M4-07", "type": "mcq", "prompt": "35 − 17 = ?", "choices": ["16", "17", "18", "19"], "answer": "18", "floor": 7 },
+    { "id": "M4-08", "type": "mcq", "prompt": "6 × 8 = ?", "choices": ["42", "46", "48", "54"], "answer": "48", "floor": 8 },
+    { "id": "M4-09", "type": "mcq", "prompt": "45 ÷ 5 = ?", "choices": ["7", "8", "9", "6"], "answer": "9", "floor": 9 },
+    { "id": "M4-10", "type": "mcq", "prompt": "47 + 26 = ?", "choices": ["71", "72", "73", "74"], "answer": "73", "floor": 10 },
+    { "id": "M4-11", "type": "mcq", "prompt": "7 × 7 = ?", "choices": ["42", "49", "56", "48"], "answer": "49", "floor": 11 },
+    { "id": "M4-12", "type": "mcq", "prompt": "81 ÷ 9 = ?", "choices": ["7", "8", "9", "6"], "answer": "9", "floor": 12 }
+  ]
+}

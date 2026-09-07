@@ -3,12 +3,15 @@ import { computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { MAP_HOTSPOTS, PROFILE_KEYS, PROFILE_META } from '@sujia/shared';
 import { useProfileStore } from '../stores/profile';
+import { useProgressStore } from '../stores/progress';
 
 const router = useRouter();
 const profile = useProfileStore();
+const progress = useProgressStore();
 
 onMounted(() => {
   if (!profile.activeKey) router.replace('/select');
+  else progress.hydrateFromServer(profile.activeKey);
 });
 
 const siblings = computed(() =>
@@ -18,15 +21,26 @@ const siblings = computed(() =>
   })),
 );
 
+function hotspotBadge(id: string) {
+  if (id === 'math') {
+    const s = progress.trackStars(profile.activeKey, 'math');
+    return s > 0 ? `${s}⭐` : '可玩';
+  }
+  if (id === 'english') {
+    const s = progress.trackStars(profile.activeKey, 'english');
+    return s > 0 ? `${s}⭐` : '可玩';
+  }
+  return 'M2';
+}
+
 function onHotspot(id: string) {
+  const spot = MAP_HOTSPOTS.find((h) => h.id === id);
+  if (spot && 'route' in spot && spot.route) {
+    router.push(spot.route);
+    return;
+  }
   const tip =
-    id === 'math'
-      ? '数学馆即将开放（M1）'
-      : id === 'english'
-        ? '英语岛即将开放（M1）'
-        : id === 'team'
-          ? '组队房间码将在 M2 上线'
-          : '造关卡工坊将在 M2 上线';
+    id === 'team' ? '组队房间码将在 M2 上线' : '造关卡工坊将在 M2 上线';
   window.alert(`果冻：${tip}`);
 }
 </script>
@@ -36,7 +50,10 @@ function onHotspot(id: string) {
     <header class="top">
       <div>
         <h1>竹林大地图</h1>
-        <p>当前：{{ profile.meta.displayName }} · {{ profile.meta.title }}</p>
+        <p>
+          当前：{{ profile.meta.displayName }} · {{ profile.meta.title }}
+          · 总星 {{ progress.totalStars(profile.activeKey) }}⭐
+        </p>
       </div>
       <button class="switch tap" type="button" @click="router.push('/select')">换人</button>
     </header>
@@ -54,6 +71,7 @@ function onHotspot(id: string) {
           <span class="emoji">{{ spot.emoji }}</span>
           <strong>{{ spot.label }}</strong>
           <small>{{ spot.hint }}</small>
+          <span class="badge">{{ hotspotBadge(spot.id) }}</span>
         </button>
       </div>
     </section>
@@ -62,7 +80,7 @@ function onHotspot(id: string) {
       <img src="/art/map-avatars-v1.png" alt="果冻提示" />
       <div>
         <strong>果冻提示</strong>
-        <p>先点热点逛逛吧！兄弟姐妹的图钉在下方，现在都是离线状态。</p>
+        <p>点「数学馆」或「英语岛」开始闯关！通关星数会挂在热点上。</p>
       </div>
     </section>
 
@@ -112,6 +130,7 @@ function onHotspot(id: string) {
   margin-top: 0.75rem;
 }
 .hotspot {
+  position: relative;
   background: linear-gradient(180deg, #ffffff, #f1f8f3);
   border: 2px solid rgba(47, 107, 79, 0.25);
   display: flex;
@@ -123,6 +142,17 @@ function onHotspot(id: string) {
 }
 .emoji { font-size: 1.4rem; }
 .hotspot small { color: #678074; font-weight: 500; }
+.badge {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  background: #fff3e0;
+  color: #e65100;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+}
 .pins h2 { font-size: 1.05rem; margin-bottom: 0.55rem; }
 .pin-row { display: flex; flex-direction: column; gap: 0.55rem; }
 .pin { display: flex; align-items: center; gap: 0.65rem; }

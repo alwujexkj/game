@@ -1,0 +1,30 @@
+{
+  "levelId": "E1",
+  "title": "听音找卡片",
+  "questions": [
+    { "id": "E1-01", "type": "listen_pick", "word": "apple", "phonetic": "/ˈæpl/", "meaning": "苹果", "emoji": "🍎", "choices": [
+      { "word": "apple", "emoji": "🍎" }, { "word": "banana", "emoji": "🍌" }, { "word": "cat", "emoji": "🐱" }, { "word": "dog", "emoji": "🐶" }
+    ], "answer": "apple" },
+    { "id": "E1-02", "type": "listen_pick", "word": "banana", "phonetic": "/bəˈnɑːnə/", "meaning": "香蕉", "emoji": "🍌", "choices": [
+      { "word": "book", "emoji": "📘" }, { "word": "banana", "emoji": "🍌" }, { "word": "ball", "emoji": "⚽" }, { "word": "bird", "emoji": "🐦" }
+    ], "answer": "banana" },
+    { "id": "E1-03", "type": "listen_pick", "word": "cat", "phonetic": "/kæt/", "meaning": "猫", "emoji": "🐱", "choices": [
+      { "word": "car", "emoji": "🚗" }, { "word": "cup", "emoji": "☕" }, { "word": "cat", "emoji": "🐱" }, { "word": "cake", "emoji": "🍰" }
+    ], "answer": "cat" },
+    { "id": "E1-04", "type": "listen_pick", "word": "dog", "phonetic": "/dɔːɡ/", "meaning": "狗", "emoji": "🐶", "choices": [
+      { "word": "dog", "emoji": "🐶" }, { "word": "duck", "emoji": "🦆" }, { "word": "door", "emoji": "🚪" }, { "word": "desk", "emoji": "🪑" }
+    ], "answer": "dog" },
+    { "id": "E1-05", "type": "listen_pick", "word": "fish", "phonetic": "/fɪʃ/", "meaning": "鱼", "emoji": "🐟", "choices": [
+      { "word": "frog", "emoji": "🐸" }, { "word": "fish", "emoji": "🐟" }, { "word": "fox", "emoji": "🦊" }, { "word": "fan", "emoji": "🪭" }
+    ], "answer": "fish" },
+    { "id": "E1-06", "type": "listen_pick", "word": "sun", "phonetic": "/sʌn/", "meaning": "太阳", "emoji": "☀️", "choices": [
+      { "word": "star", "emoji": "⭐" }, { "word": "snow", "emoji": "❄️" }, { "word": "sun", "emoji": "☀️" }, { "word": "sand", "emoji": "🏖️" }
+    ], "answer": "sun" },
+    { "id": "E1-07", "type": "listen_pick", "word": "book", "phonetic": "/bʊk/", "meaning": "书", "emoji": "📘", "choices": [
+      { "word": "bag", "emoji": "🎒" }, { "word": "bed", "emoji": "🛏️" }, { "word": "bus", "emoji": "🚌" }, { "word": "book", "emoji": "📘" }
+    ], "answer": "book" },
+    { "id": "E1-08", "type": "listen_pick", "word": "water", "phonetic": "/ˈwɔːtə/", "meaning": "水", "emoji": "💧", "choices": [
+      { "word": "water", "emoji": "💧" }, { "word": "window", "emoji": "🪟" }, { "word": "watch", "emoji": "⌚" }, { "word": "wind", "emoji": "💨" }
+    ], "answer": "water" }
+  ]
+}

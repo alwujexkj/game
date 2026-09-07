@@ -1,0 +1,54 @@
+{
+  "levelId": "E3",
+  "title": "单词配对翻翻乐",
+  "questions": [
+    { "id": "E3-01", "type": "pair", "pairs": [
+      { "word": "happy", "emoji": "😊", "meaning": "开心" },
+      { "word": "sad", "emoji": "😢", "meaning": "难过" },
+      { "word": "angry", "emoji": "😠", "meaning": "生气" },
+      { "word": "tired", "emoji": "😴", "meaning": "累了" }
+    ]},
+    { "id": "E3-02", "type": "pair", "pairs": [
+      { "word": "red", "emoji": "🔴", "meaning": "红色" },
+      { "word": "blue", "emoji": "🔵", "meaning": "蓝色" },
+      { "word": "green", "emoji": "🟢", "meaning": "绿色" },
+      { "word": "yellow", "emoji": "🟡", "meaning": "黄色" }
+    ]},
+    { "id": "E3-03", "type": "pair", "pairs": [
+      { "word": "big", "emoji": "🐘", "meaning": "大的" },
+      { "word": "small", "emoji": "🐜", "meaning": "小的" },
+      { "word": "fast", "emoji": "🚀", "meaning": "快的" },
+      { "word": "slow", "emoji": "🐢", "meaning": "慢的" }
+    ]},
+    { "id": "E3-04", "type": "pair", "pairs": [
+      { "word": "school", "emoji": "🏫", "meaning": "学校" },
+      { "word": "home", "emoji": "🏠", "meaning": "家" },
+      { "word": "park", "emoji": "🏞️", "meaning": "公园" },
+      { "word": "shop", "emoji": "🛒", "meaning": "商店" }
+    ]},
+    { "id": "E3-05", "type": "pair", "pairs": [
+      { "word": "run", "emoji": "🏃", "meaning": "跑" },
+      { "word": "jump", "emoji": "🦘", "meaning": "跳" },
+      { "word": "swim", "emoji": "🏊", "meaning": "游泳" },
+      { "word": "read", "emoji": "📖", "meaning": "读" }
+    ]},
+    { "id": "E3-06", "type": "pair", "pairs": [
+      { "word": "one", "emoji": "1️⃣", "meaning": "一" },
+      { "word": "two", "emoji": "2️⃣", "meaning": "二" },
+      { "word": "three", "emoji": "3️⃣", "meaning": "三" },
+      { "word": "four", "emoji": "4️⃣", "meaning": "四" }
+    ]},
+    { "id": "E3-07", "type": "pair", "pairs": [
+      { "word": "mom", "emoji": "👩", "meaning": "妈妈" },
+      { "word": "dad", "emoji": "👨", "meaning": "爸爸" },
+      { "word": "sister", "emoji": "👧", "meaning": "姐姐/妹妹" },
+      { "word": "brother", "emoji": "👦", "meaning": "哥哥/弟弟" }
+    ]},
+    { "id": "E3-08", "type": "pair", "pairs": [
+      { "word": "milk", "emoji": "🥛", "meaning": "牛奶" },
+      { "word": "bread", "emoji": "🍞", "meaning": "面包" },
+      { "word": "egg", "emoji": "🥚", "meaning": "鸡蛋" },
+      { "word": "rice", "emoji": "🍚", "meaning": "米饭" }
+    ]}
+  ]
+}

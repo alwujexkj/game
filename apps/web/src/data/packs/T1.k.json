@@ -1,0 +1,90 @@
+{
+  "packId": "T1.k",
+  "levelId": "T1",
+  "ageBand": "kinder",
+  "title": "双人开门",
+  "questionCount": 5,
+  "version": 2,
+  "questions": [
+    {
+      "id": "T1.k-01",
+      "type": "mcq",
+      "prompt": "数一数：🍎🍎🍎 有几个？",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "3",
+      "knowledgeTags": [
+        "math.number.count_1_5"
+      ],
+      "jelly": "开门需要 3 块积木！"
+    },
+    {
+      "id": "T1.k-02",
+      "type": "mcq",
+      "prompt": "1 + 3 = ?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "2"
+      ],
+      "answer": "4",
+      "knowledgeTags": [
+        "math.addsub.within_5"
+      ],
+      "jelly": "门缝打开一点了～"
+    },
+    {
+      "id": "T1.k-03",
+      "type": "mcq",
+      "prompt": "数一数：⭐⭐⭐⭐ 有几颗？",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "2"
+      ],
+      "answer": "4",
+      "knowledgeTags": [
+        "math.number.count_1_5"
+      ],
+      "jelly": "一起推门！"
+    },
+    {
+      "id": "T1.k-04",
+      "type": "mcq",
+      "prompt": "5 − 2 = ?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "1"
+      ],
+      "answer": "3",
+      "knowledgeTags": [
+        "math.addsub.within_5"
+      ],
+      "jelly": "还差几步！"
+    },
+    {
+      "id": "T1.k-05",
+      "type": "mcq",
+      "prompt": "2 + 2 = ?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "2"
+      ],
+      "answer": "4",
+      "knowledgeTags": [
+        "math.addsub.within_5"
+      ],
+      "jelly": "果冻给你加油！"
+    }
+  ]
+}

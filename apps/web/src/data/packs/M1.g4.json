@@ -1,0 +1,106 @@
+{
+  "packId": "M1.g4",
+  "levelId": "M1",
+  "ageBand": "g4",
+  "title": "果冻数骨头·热身",
+  "questionCount": 6,
+  "version": 1,
+  "questions": [
+    {
+      "id": "M1.g4-01",
+      "type": "drag_count",
+      "prompt": "数一数小苹果",
+      "count": 8,
+      "emoji": "🍎",
+      "choices": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "answer": 8,
+      "knowledgeTags": [
+        "math.number.count_1_10"
+      ]
+    },
+    {
+      "id": "M1.g4-02",
+      "type": "mcq",
+      "prompt": "哪个数字最大？",
+      "choices": [
+        "3",
+        "9",
+        "1",
+        "6"
+      ],
+      "answer": "9",
+      "knowledgeTags": [
+        "math.number.compare_10"
+      ]
+    },
+    {
+      "id": "M1.g4-03",
+      "type": "mcq",
+      "prompt": "从 1 数到 10，缺了哪个？1 2 3 4 5 _ 7 8 9 10",
+      "choices": [
+        "5",
+        "6",
+        "8",
+        "9"
+      ],
+      "answer": "6",
+      "knowledgeTags": [
+        "math.number.count_1_10"
+      ]
+    },
+    {
+      "id": "M1.g4-04",
+      "type": "drag_count",
+      "prompt": "数点点",
+      "count": 10,
+      "emoji": "🔵",
+      "choices": [
+        8,
+        9,
+        10,
+        7
+      ],
+      "answer": 10,
+      "knowledgeTags": [
+        "math.number.count_1_10"
+      ]
+    },
+    {
+      "id": "M1.g4-05",
+      "type": "mcq",
+      "prompt": "哪个最小？",
+      "choices": [
+        "8",
+        "2",
+        "5",
+        "7"
+      ],
+      "answer": "2",
+      "knowledgeTags": [
+        "math.number.compare_10"
+      ]
+    },
+    {
+      "id": "M1.g4-06",
+      "type": "drag_count",
+      "prompt": "数竹子",
+      "count": 7,
+      "emoji": "🎋",
+      "choices": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "answer": 7,
+      "knowledgeTags": [
+        "math.number.count_1_10"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "packId": "M1.k",
+  "levelId": "M1",
+  "ageBand": "kinder",
+  "title": "果冻数骨头",
+  "questionCount": 8,
+  "version": 1,
+  "questions": [
+    {
+      "id": "M1.k-01",
+      "type": "drag_count",
+      "prompt": "数一数，有几根骨头？",
+      "count": 3,
+      "emoji": "🦴",
+      "choices": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "answer": 3,
+      "knowledgeTags": [
+        "math.number.count_1_5"
+      ]
+    },
+    {
+      "id": "M1.k-02",
+      "type": "drag_count",
+      "prompt": "果冻找到几块饼干？",
+      "count": 2,
+      "emoji": "🍪",
+      "choices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "answer": 2,
+      "knowledgeTags": [
+        "math.number.count_1_5"
+      ]
+    },
+    {
+      "id": "M1.k-03",
+      "type": "drag_count",
+      "prompt": "数一数小星星",
+      "count": 5,
+      "emoji": "⭐",
+      "choices": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "answer": 5,
+      "knowledgeTags": [
+        "math.number.count_1_5"
+      ]
+    },
+    {
+      "id": "M1.k-04",
+      "type": "mcq",
+      "prompt": "哪一个是数字 4？",
+      "choices": [
+        "2",
+        "4",
+        "6",
+        "1"
+      ],
+      "answer": "4",
+      "knowledgeTags": [
+        "math.number.count_1_5"
+      ]
+    },
+    {
+      "id": "M1.k-05",
+      "type": "drag_count",
+      "prompt": "数一数小花",
+      "count": 4,
+      "emoji": "🌸",
+      "choices": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "answer": 4,
+      "knowledgeTags": [
+        "math.number.count_1_5"
+      ]
+    },
+    {
+      "id": "M1.k-06",
+      "type": "drag_count",
+      "prompt": "数一数小苹果",
+      "count": 1,
+      "emoji": "🍎",
+      "choices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "answer": 1,
+      "knowledgeTags": [
+        "math.number.count_1_5"
+      ]
+    },
+    {
+      "id": "M1.k-07",
+      "type": "mcq",
+      "prompt": "哪一个是数字 2？",
+      "choices": [
+        "5",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "2",
+      "knowledgeTags": [
+        "math.number.count_1_5"
+      ]
+    },
+    {
+      "id": "M1.k-08",
+      "type": "drag_count",
+      "prompt": "果冻尾巴摇了几下？",
+      "count": 5,
+      "emoji": "🔵",
+      "choices": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "answer": 5,
+      "knowledgeTags": [
+        "math.number.count_1_5"
+      ]
+    }
+  ]
+}

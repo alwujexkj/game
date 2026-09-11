@@ -1,0 +1,90 @@
+{
+  "packId": "T1.g5",
+  "levelId": "T1",
+  "ageBand": "g5",
+  "title": "双人开门",
+  "questionCount": 5,
+  "version": 1,
+  "questions": [
+    {
+      "id": "T1.g5-01",
+      "type": "mcq",
+      "prompt": "13 + 8 = ?",
+      "choices": [
+        "20",
+        "21",
+        "22",
+        "19"
+      ],
+      "answer": "21",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "队长带队开门！"
+    },
+    {
+      "id": "T1.g5-02",
+      "type": "mcq",
+      "prompt": "19 − 6 = ?",
+      "choices": [
+        "12",
+        "13",
+        "14",
+        "11"
+      ],
+      "answer": "13",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "门缝打开一点了～"
+    },
+    {
+      "id": "T1.g5-03",
+      "type": "mcq",
+      "prompt": "9 + 9 = ?",
+      "choices": [
+        "17",
+        "18",
+        "19",
+        "16"
+      ],
+      "answer": "18",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "一起推门！"
+    },
+    {
+      "id": "T1.g5-04",
+      "type": "mcq",
+      "prompt": "17 − 8 = ?",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "7"
+      ],
+      "answer": "9",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "还差几步！"
+    },
+    {
+      "id": "T1.g5-05",
+      "type": "mcq",
+      "prompt": "11 + 7 = ?",
+      "choices": [
+        "17",
+        "18",
+        "19",
+        "16"
+      ],
+      "answer": "18",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ],
+      "jelly": "满星一起冲！"
+    }
+  ]
+}

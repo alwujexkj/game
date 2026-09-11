@@ -1,0 +1,255 @@
+{
+  "packId": "E1.g5",
+  "levelId": "E1",
+  "ageBand": "g5",
+  "title": "听音找卡片·热身",
+  "questionCount": 8,
+  "version": 1,
+  "questions": [
+    {
+      "id": "E1.g5-01",
+      "type": "listen_pick",
+      "word": "because",
+      "phonetic": "/bɪˈkɒz/",
+      "meaning": "因为",
+      "emoji": "➡️",
+      "choices": [
+        {
+          "word": "because",
+          "emoji": "➡️"
+        },
+        {
+          "word": "before",
+          "emoji": "⏪"
+        },
+        {
+          "word": "become",
+          "emoji": "🌱"
+        },
+        {
+          "word": "between",
+          "emoji": "↔️"
+        }
+      ],
+      "answer": "because",
+      "knowledgeTags": [
+        "eng.vocab.g5_core",
+        "eng.phonics.near_sound"
+      ]
+    },
+    {
+      "id": "E1.g5-02",
+      "type": "listen_pick",
+      "word": "mountain",
+      "phonetic": "/ˈmaʊntən/",
+      "meaning": "山",
+      "emoji": "⛰️",
+      "choices": [
+        {
+          "word": "mountain",
+          "emoji": "⛰️"
+        },
+        {
+          "word": "fountain",
+          "emoji": "⛲"
+        },
+        {
+          "word": "morning",
+          "emoji": "🌅"
+        },
+        {
+          "word": "garden",
+          "emoji": "🏡"
+        }
+      ],
+      "answer": "mountain",
+      "knowledgeTags": [
+        "eng.vocab.g5_core"
+      ]
+    },
+    {
+      "id": "E1.g5-03",
+      "type": "listen_pick",
+      "word": "quiet",
+      "phonetic": "/ˈkwaɪət/",
+      "meaning": "安静的",
+      "emoji": "🤫",
+      "choices": [
+        {
+          "word": "quiet",
+          "emoji": "🤫"
+        },
+        {
+          "word": "quite",
+          "emoji": "✅"
+        },
+        {
+          "word": "quick",
+          "emoji": "⚡"
+        },
+        {
+          "word": "queen",
+          "emoji": "👑"
+        }
+      ],
+      "answer": "quiet",
+      "knowledgeTags": [
+        "eng.vocab.g5_core",
+        "eng.phonics.near_sound"
+      ]
+    },
+    {
+      "id": "E1.g5-04",
+      "type": "listen_pick",
+      "word": "library",
+      "phonetic": "/ˈlaɪbrəri/",
+      "meaning": "图书馆",
+      "emoji": "📚",
+      "choices": [
+        {
+          "word": "library",
+          "emoji": "📚"
+        },
+        {
+          "word": "laundry",
+          "emoji": "👕"
+        },
+        {
+          "word": "laboratory",
+          "emoji": "🔬"
+        },
+        {
+          "word": "living",
+          "emoji": "🛋️"
+        }
+      ],
+      "answer": "library",
+      "knowledgeTags": [
+        "eng.vocab.school",
+        "eng.vocab.g5_core"
+      ]
+    },
+    {
+      "id": "E1.g5-05",
+      "type": "listen_pick",
+      "word": "important",
+      "phonetic": "/ɪmˈpɔːtnt/",
+      "meaning": "重要的",
+      "emoji": "❗",
+      "choices": [
+        {
+          "word": "important",
+          "emoji": "❗"
+        },
+        {
+          "word": "impossible",
+          "emoji": "🚫"
+        },
+        {
+          "word": "interest",
+          "emoji": "⭐"
+        },
+        {
+          "word": "invite",
+          "emoji": "📩"
+        }
+      ],
+      "answer": "important",
+      "knowledgeTags": [
+        "eng.vocab.g5_core"
+      ]
+    },
+    {
+      "id": "E1.g5-06",
+      "type": "listen_pick",
+      "word": "weather",
+      "phonetic": "/ˈweðə/",
+      "meaning": "天气",
+      "emoji": "🌤️",
+      "choices": [
+        {
+          "word": "weather",
+          "emoji": "🌤️"
+        },
+        {
+          "word": "whether",
+          "emoji": "❓"
+        },
+        {
+          "word": "winter",
+          "emoji": "❄️"
+        },
+        {
+          "word": "water",
+          "emoji": "💧"
+        }
+      ],
+      "answer": "weather",
+      "knowledgeTags": [
+        "eng.vocab.weather",
+        "eng.phonics.near_sound"
+      ]
+    },
+    {
+      "id": "E1.g5-07",
+      "type": "listen_pick",
+      "word": "science",
+      "phonetic": "/ˈsaɪəns/",
+      "meaning": "科学",
+      "emoji": "🔬",
+      "choices": [
+        {
+          "word": "science",
+          "emoji": "🔬"
+        },
+        {
+          "word": "silence",
+          "emoji": "🤫"
+        },
+        {
+          "word": "season",
+          "emoji": "🍂"
+        },
+        {
+          "word": "sentence",
+          "emoji": "✍️"
+        }
+      ],
+      "answer": "science",
+      "knowledgeTags": [
+        "eng.vocab.g5_core",
+        "eng.vocab.science_lite"
+      ]
+    },
+    {
+      "id": "E1.g5-08",
+      "type": "listen_pick",
+      "word": "together",
+      "phonetic": "/təˈɡeðə/",
+      "meaning": "一起",
+      "emoji": "🤝",
+      "choices": [
+        {
+          "word": "together",
+          "emoji": "🤝"
+        },
+        {
+          "word": "tomorrow",
+          "emoji": "📅"
+        },
+        {
+          "word": "tonight",
+          "emoji": "🌙"
+        },
+        {
+          "word": "toward",
+          "emoji": "➡️"
+        }
+      ],
+      "answer": "together",
+      "knowledgeTags": [
+        "eng.vocab.g5_core"
+      ]
+    }
+  ]
+}

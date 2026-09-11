@@ -1,0 +1,250 @@
+{
+  "packId": "E3.g5",
+  "levelId": "E3",
+  "ageBand": "g5",
+  "title": "单词配对翻翻乐",
+  "questionCount": 8,
+  "version": 2,
+  "questions": [
+    {
+      "id": "E3.g5-01",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.actions"
+      ],
+      "pairs": [
+        {
+          "word": "write",
+          "emoji": "✍️",
+          "meaning": "写"
+        },
+        {
+          "word": "draw",
+          "emoji": "🎨",
+          "meaning": "画"
+        },
+        {
+          "word": "sing",
+          "emoji": "🎤",
+          "meaning": "唱"
+        },
+        {
+          "word": "dance",
+          "emoji": "💃",
+          "meaning": "跳舞"
+        }
+      ]
+    },
+    {
+      "id": "E3.g5-02",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.g5_core"
+      ],
+      "pairs": [
+        {
+          "word": "begin",
+          "emoji": "▶️",
+          "meaning": "开始"
+        },
+        {
+          "word": "finish",
+          "emoji": "🏁",
+          "meaning": "结束"
+        },
+        {
+          "word": "enter",
+          "emoji": "🚪",
+          "meaning": "进入"
+        },
+        {
+          "word": "leave",
+          "emoji": "🚶",
+          "meaning": "离开"
+        }
+      ]
+    },
+    {
+      "id": "E3.g5-03",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.opposites"
+      ],
+      "pairs": [
+        {
+          "word": "heavy",
+          "emoji": "🏋️",
+          "meaning": "重的"
+        },
+        {
+          "word": "light",
+          "emoji": "🪶",
+          "meaning": "轻的"
+        },
+        {
+          "word": "early",
+          "emoji": "🌅",
+          "meaning": "早的"
+        },
+        {
+          "word": "late",
+          "emoji": "🌙",
+          "meaning": "晚的"
+        }
+      ]
+    },
+    {
+      "id": "E3.g5-04",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.school"
+      ],
+      "pairs": [
+        {
+          "word": "teacher",
+          "emoji": "👩‍🏫",
+          "meaning": "老师"
+        },
+        {
+          "word": "student",
+          "emoji": "🧑‍🎓",
+          "meaning": "学生"
+        },
+        {
+          "word": "lesson",
+          "emoji": "📝",
+          "meaning": "课"
+        },
+        {
+          "word": "homework",
+          "emoji": "📚",
+          "meaning": "作业"
+        }
+      ]
+    },
+    {
+      "id": "E3.g5-05",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.feelings"
+      ],
+      "pairs": [
+        {
+          "word": "brave",
+          "emoji": "🦁",
+          "meaning": "勇敢的"
+        },
+        {
+          "word": "shy",
+          "emoji": "🙈",
+          "meaning": "害羞的"
+        },
+        {
+          "word": "proud",
+          "emoji": "🏆",
+          "meaning": "骄傲的"
+        },
+        {
+          "word": "calm",
+          "emoji": "😌",
+          "meaning": "平静的"
+        }
+      ]
+    },
+    {
+      "id": "E3.g5-06",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.weather"
+      ],
+      "pairs": [
+        {
+          "word": "sunny",
+          "emoji": "☀️",
+          "meaning": "晴朗的"
+        },
+        {
+          "word": "rainy",
+          "emoji": "🌧️",
+          "meaning": "下雨的"
+        },
+        {
+          "word": "windy",
+          "emoji": "💨",
+          "meaning": "有风的"
+        },
+        {
+          "word": "cloudy",
+          "emoji": "☁️",
+          "meaning": "多云的"
+        }
+      ]
+    },
+    {
+      "id": "E3.g5-07",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.g5_core"
+      ],
+      "pairs": [
+        {
+          "word": "always",
+          "emoji": "♾️",
+          "meaning": "总是"
+        },
+        {
+          "word": "never",
+          "emoji": "🚫",
+          "meaning": "从不"
+        },
+        {
+          "word": "often",
+          "emoji": "🔁",
+          "meaning": "经常"
+        },
+        {
+          "word": "sometimes",
+          "emoji": "🎲",
+          "meaning": "有时"
+        }
+      ]
+    },
+    {
+      "id": "E3.g5-08",
+      "type": "pair",
+      "knowledgeTags": [
+        "eng.read.word_pair",
+        "eng.vocab.family_home"
+      ],
+      "pairs": [
+        {
+          "word": "kitchen",
+          "emoji": "🍳",
+          "meaning": "厨房"
+        },
+        {
+          "word": "bedroom",
+          "emoji": "🛏️",
+          "meaning": "卧室"
+        },
+        {
+          "word": "garden",
+          "emoji": "🏡",
+          "meaning": "花园"
+        },
+        {
+          "word": "bathroom",
+          "emoji": "🚿",
+          "meaning": "浴室"
+        }
+      ]
+    }
+  ]
+}

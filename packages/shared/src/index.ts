@@ -219,6 +219,8 @@ export type ProgressRecord = z.infer<typeof ProgressRecordSchema>;
 
 export const DEMO_FAMILY_ID = 'sujia-demo';
 
+import { resolvePack, T1_PACK_BANKS } from './packs';
+
 export const TEAM_LEVEL_ID = 'T1' as const;
 export type TeamLevelId = typeof TEAM_LEVEL_ID;
 
@@ -281,7 +283,34 @@ export function seededShuffle<T>(items: T[], seed: string): T[] {
   return arr;
 }
 
-export function pickTeamQuestions(seed: string, count = TEAM_QUESTION_TOTAL): TeamQuestionPayload[] {
+/**
+ * @deprecated Wave0: prefer resolvePack('T1', minAgeBand(members)) + T1 pack JSON.
+ * Kept as thin wrapper for rooms.service — same pack for all via ageBand (= minAge).
+ */
+export function pickTeamQuestions(
+  seed: string,
+  count = TEAM_QUESTION_TOTAL,
+  ageBand: AgeBand = 'kinder',
+): TeamQuestionPayload[] {
+  const resolved = resolvePack('T1', ageBand);
+  const packQs = T1_PACK_BANKS[resolved.packId];
+  if (packQs?.length) {
+    if (resolved.fallback) {
+      console.warn(`[pickTeamQuestions→resolvePack] ${resolved.reason}; using ${resolved.packId}`);
+    }
+    const mapped: TeamQuestionPayload[] = packQs.map((q) => ({
+      id: q.id,
+      type: 'mcq' as const,
+      prompt: q.prompt,
+      choices: q.choices,
+      answer: q.answer,
+      jelly: q.jelly,
+    }));
+    return seededShuffle(mapped, seed).slice(0, count);
+  }
+  console.warn(
+    `[pickTeamQuestions→resolvePack] pack ${resolved.packId} missing; fallback legacy TEAM_T1_BANK`,
+  );
   return seededShuffle(TEAM_T1_BANK, seed).slice(0, count);
 }
 
@@ -419,3 +448,22 @@ export {
   type GiftSend,
   type GiftLogEntry,
 } from './stickers';
+
+export {
+  AGE_BAND_PACK_SUFFIX,
+  WAVE0_DISABLED_PACKS,
+  WAVE0_PACK_IDS,
+  PACK_MANIFEST_VERSION,
+  WEEKLY_TRACK_WEIGHTS,
+  DAILY_STAR_CAPS,
+  LEVEL_DEFAULT_KNOWLEDGE_TAG,
+  T1_PACK_BANKS,
+  minAgeBand,
+  toPackId,
+  resolvePack,
+  resolvePackId,
+  type PackId,
+  type Wave0PackId,
+  type ResolvePackResult,
+  type SharedPackQuestion,
+} from './packs';

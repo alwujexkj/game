@@ -4,35 +4,35 @@
   "ageBand": "g5",
   "title": "开门要几块·五年级口算",
   "questionCount": 10,
-  "version": 5,
+  "version": 6,
   "questions": [
     {
       "id": "M2.g5-01",
       "type": "mcq",
-      "prompt": "47 + 36 = ?",
+      "prompt": "28 + 17 = ?",
       "choices": [
-        "73",
-        "83",
-        "82",
-        "93"
+        "35",
+        "45",
+        "44",
+        "55"
       ],
-      "answer": "83",
+      "answer": "45",
       "knowledgeTags": [
         "math.addsub.multi_digit"
       ],
-      "jelly": "两位数进位，开门！"
+      "jelly": "进位别忘了！"
     },
     {
       "id": "M2.g5-02",
       "type": "mcq",
-      "prompt": "85 − 29 = ?",
+      "prompt": "46 − 19 = ?",
       "choices": [
-        "54",
-        "56",
-        "66",
-        "55"
+        "27",
+        "37",
+        "26",
+        "28"
       ],
-      "answer": "56",
+      "answer": "27",
       "knowledgeTags": [
         "math.addsub.multi_digit"
       ]
@@ -40,30 +40,29 @@
     {
       "id": "M2.g5-03",
       "type": "mcq",
-      "prompt": "63 + 28 = ?",
+      "prompt": "35 + 28 = ?",
       "choices": [
-        "81",
-        "91",
-        "90",
-        "92"
+        "53",
+        "63",
+        "62",
+        "73"
       ],
-      "answer": "91",
+      "answer": "63",
       "knowledgeTags": [
         "math.addsub.multi_digit"
-      ],
-      "jelly": "门缝更大了！"
+      ]
     },
     {
       "id": "M2.g5-04",
       "type": "mcq",
-      "prompt": "100 − 47 = ?",
+      "prompt": "52 − 27 = ?",
       "choices": [
-        "53",
-        "63",
-        "52",
-        "43"
+        "25",
+        "35",
+        "24",
+        "26"
       ],
-      "answer": "53",
+      "answer": "25",
       "knowledgeTags": [
         "math.addsub.multi_digit"
       ]
@@ -71,14 +70,14 @@
     {
       "id": "M2.g5-05",
       "type": "mcq",
-      "prompt": "56 + 39 = ?",
+      "prompt": "39 + 46 = ?",
       "choices": [
+        "75",
         "85",
-        "95",
-        "94",
-        "96"
+        "84",
+        "95"
       ],
-      "answer": "95",
+      "answer": "85",
       "knowledgeTags": [
         "math.addsub.multi_digit"
       ]
@@ -86,45 +85,44 @@
     {
       "id": "M2.g5-06",
       "type": "mcq",
-      "prompt": "72 − 35 = ?",
+      "prompt": "70 − 38 = ?",
       "choices": [
-        "37",
-        "47",
-        "36",
-        "27"
+        "32",
+        "42",
+        "31",
+        "33"
       ],
-      "answer": "37",
+      "answer": "32",
       "knowledgeTags": [
         "math.addsub.multi_digit"
-      ],
-      "jelly": "再推一下！"
+      ]
     },
     {
       "id": "M2.g5-07",
       "type": "mcq",
-      "prompt": "8 × 7 = ?",
+      "prompt": "24 + 58 = ?",
       "choices": [
-        "54",
-        "56",
-        "63",
-        "48"
+        "72",
+        "82",
+        "81",
+        "92"
       ],
-      "answer": "56",
+      "answer": "82",
       "knowledgeTags": [
-        "math.muldiv.table"
+        "math.addsub.multi_digit"
       ]
     },
     {
       "id": "M2.g5-08",
       "type": "mcq",
-      "prompt": "48 + 27 = ?",
+      "prompt": "81 − 46 = ?",
       "choices": [
-        "65",
-        "75",
-        "74",
-        "85"
+        "35",
+        "45",
+        "34",
+        "36"
       ],
-      "answer": "75",
+      "answer": "35",
       "knowledgeTags": [
         "math.addsub.multi_digit"
       ]
@@ -132,34 +130,36 @@
     {
       "id": "M2.g5-09",
       "type": "mcq",
-      "prompt": "91 − 46 = ?",
+      "prompt": "3 × 8 + 16 = ?",
       "choices": [
-        "45",
-        "55",
-        "44",
-        "35"
+        "40",
+        "38",
+        "48",
+        "30"
       ],
-      "answer": "45",
-      "knowledgeTags": [
-        "math.addsub.multi_digit"
-      ]
-    },
-    {
-      "id": "M2.g5-10",
-      "type": "mcq",
-      "prompt": "9 × 6 + 8 = ?",
-      "choices": [
-        "54",
-        "62",
-        "63",
-        "72"
-      ],
-      "answer": "62",
+      "answer": "40",
       "knowledgeTags": [
         "math.muldiv.table",
         "math.addsub.multi_digit"
       ],
-      "jelly": "五年级口算过关！"
+      "jelly": "先乘后加～"
+    },
+    {
+      "id": "M2.g5-10",
+      "type": "mcq",
+      "prompt": "5 × 7 + 23 = ?",
+      "choices": [
+        "58",
+        "48",
+        "57",
+        "68"
+      ],
+      "answer": "58",
+      "knowledgeTags": [
+        "math.muldiv.table",
+        "math.addsub.multi_digit"
+      ],
+      "jelly": "大门敞开！"
     }
   ]
 }

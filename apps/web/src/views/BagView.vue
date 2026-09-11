@@ -21,7 +21,7 @@ const inventory = useInventoryStore();
 const selected = ref<StickerId | null>(null);
 const toast = ref('');
 const jellyMood = ref<'happy' | 'cheer' | 'oops' | 'think'>('happy');
-const jellyText = ref('选一张贴纸送给家人，或喂给果冻吧！');
+const jellyText = ref('贴纸送给家人，或喂果冻！');
 
 const items = computed(() => inventory.itemsOf(profile.activeKey));
 const siblings = computed(() =>
@@ -53,14 +53,14 @@ function pick(id: StickerId) {
   selected.value = selected.value === id ? null : id;
   const def = getSticker(id);
   jellyText.value = def
-    ? `选中「${def.name}」～送给谁呢？`
-    : '选中贴纸啦';
+    ? `「${def.name}」送给谁？`
+    : '选好贴纸啦';
   jellyMood.value = 'think';
 }
 
 function doGift(to: GiftTarget) {
   if (!profile.activeKey || !selected.value) {
-    toast.value = '先点选一张贴纸哦';
+    toast.value = '先点一张贴纸～';
     return;
   }
   const res = inventory.gift(profile.activeKey, to, selected.value);

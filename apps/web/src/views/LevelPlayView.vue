@@ -32,7 +32,7 @@ const bestCombo = ref(0);
 const correctCount = ref(0);
 const answered = ref(0);
 const locking = ref(false);
-const jellyTip = ref('加油！果冻和你一起闯关～');
+const jellyTip = ref('果冻陪你闯关！选一个～');
 const jellyMood = ref<'happy' | 'think' | 'cheer' | 'oops'>('happy');
 const settled = ref(false);
 const stars = ref(0);
@@ -64,7 +64,7 @@ function resetRun() {
   settled.value = false;
   stars.value = 0;
   droppedSticker.value = null;
-  jellyTip.value = '加油！果冻和你一起闯关～';
+  jellyTip.value = '果冻陪你闯关！选一个～';
   jellyMood.value = 'happy';
   stopTimer();
   if (isTimed.value) {
@@ -134,7 +134,7 @@ function onCorrect(tip?: string) {
   combo.value += 1;
   bestCombo.value = Math.max(bestCombo.value, combo.value);
   jellyMood.value = 'cheer';
-  jellyTip.value = tip || (combo.value >= 3 ? `连击 ×${combo.value}！汪汪！` : '答对啦！真棒！');
+  jellyTip.value = tip || (combo.value >= 3 ? `连击 ×${combo.value}！` : '答对啦！汪！');
   locking.value = true;
   setTimeout(nextOrFinish, 550);
 }
@@ -148,7 +148,7 @@ function onWrong() {
     progress.recordWrong(profile.activeKey, hints[0]);
   }
   jellyMood.value = 'oops';
-  jellyTip.value = hearts.value > 0 ? '哎呀，再试下一题～' : '爱心用完了…我们结算吧';
+  jellyTip.value = hearts.value > 0 ? '再选一次～' : '爱心没了，先看结果～';
   locking.value = true;
   if (hearts.value <= 0) {
     setTimeout(() => finish(false), 600);
@@ -170,7 +170,7 @@ function onPick(value: string | number) {
 
 function onPairComplete() {
   if (locking.value || settled.value) return;
-  onCorrect('配对成功！果冻鼓掌～');
+  onCorrect('配对成功！汪！');
 }
 
 function onPairMiss() {
@@ -178,7 +178,7 @@ function onPairMiss() {
   // Miss on pair: lose combo but not always a full heart — still count as soft miss
   combo.value = 0;
   jellyMood.value = 'think';
-  jellyTip.value = '再想想，翻开配对的两张～';
+  jellyTip.value = '再翻两张试试～';
 }
 
 onMounted(() => {

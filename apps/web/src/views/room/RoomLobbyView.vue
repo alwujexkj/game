@@ -45,10 +45,10 @@ const connectedLabel = computed(() => {
 const jellyText = computed(() => {
   if (room.lastError) return room.lastError.message;
   if (!room.connected) return '正在连接果冻电台…';
-  if (!room.state) return '正在进入大厅…';
-  if (allReady.value && isHost.value) return '大家都准备好啦！点开始开门！';
-  if (me.value?.ready) return '等小伙伴准备…汪汪！';
-  return '点「准备好了」等家人一起开门！';
+  if (!room.state) return '进大厅啦…';
+  if (allReady.value && isHost.value) return '都好啦！点开始！';
+  if (me.value?.ready) return '等家人准备…汪！';
+  return '点「准备好了」，等家人～';
 });
 
 onMounted(() => {

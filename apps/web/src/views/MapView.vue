@@ -92,9 +92,10 @@ function drillLevelForTag(tag: string | null): { path: string } | null {
 
 function startQuickDrill() {
   const tag = assignedTag.value || weakTop.value;
-  const target = drillLevelForTag(tag);
+  // Cold start: no weak/assigned tag → still open a default 5-question drill (M2).
+  const target = drillLevelForTag(tag) ?? drillLevelForTag('math.addsub.within_10');
   if (!target) {
-    window.alert('果冻：今天很顺！去三格吧');
+    window.alert('果冻：先去三格玩一关吧～');
     return;
   }
   router.push(target.path);
@@ -201,7 +202,7 @@ function playPublished(id: string) {
         <strong>弱项快修</strong>
         <small v-if="assignedTag">家长放了一格～</small>
       </header>
-      <p>{{ assignedTag ? `家里布置：${assignedTag}` : weakTop ? `这块再练 5 题～（${weakTop}）` : '今天很顺！去三格吧' }}</p>
+      <p>{{ assignedTag ? `家里布置：${assignedTag}` : weakTop ? `这块再练 5 题～（${weakTop}）` : '热热身：随便练 5 题～' }}</p>
       <button class="btn-accent tap" type="button" @click="startQuickDrill">
         短短 5 题，走起！
       </button>

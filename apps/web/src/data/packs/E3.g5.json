@@ -4,6 +4,7 @@
   "ageBand": "g5",
   "title": "单词配对翻翻乐",
   "questionCount": 8,
+  "version": 2,
   "questions": [
     {
       "id": "E3.g5-01",
@@ -14,24 +15,24 @@
       ],
       "pairs": [
         {
-          "word": "run",
-          "emoji": "🏃",
-          "meaning": "跑"
+          "word": "write",
+          "emoji": "✍️",
+          "meaning": "写"
         },
         {
-          "word": "jump",
-          "emoji": "🦘",
-          "meaning": "跳"
+          "word": "draw",
+          "emoji": "🎨",
+          "meaning": "画"
         },
         {
-          "word": "swim",
-          "emoji": "🏊",
-          "meaning": "游泳"
+          "word": "sing",
+          "emoji": "🎤",
+          "meaning": "唱"
         },
         {
-          "word": "read",
-          "emoji": "📖",
-          "meaning": "读"
+          "word": "dance",
+          "emoji": "💃",
+          "meaning": "跳舞"
         }
       ]
     },

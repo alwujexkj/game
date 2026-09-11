@@ -4,6 +4,7 @@
   "ageBand": "g5",
   "title": "开门要几块·速算热身",
   "questionCount": 10,
+  "version": 4,
   "questions": [
     {
       "id": "M2.g5-01",
@@ -33,8 +34,7 @@
       "answer": "20",
       "knowledgeTags": [
         "math.addsub.within_20"
-      ],
-      "jelly": "刚好满 20！"
+      ]
     },
     {
       "id": "M2.g5-03",
@@ -69,50 +69,20 @@
     {
       "id": "M2.g5-05",
       "type": "mcq",
-      "prompt": "16 − 8 = ?",
+      "prompt": "15 − 8 = ?",
       "choices": [
+        "6",
         "7",
         "8",
-        "9",
-        "6"
+        "5"
       ],
-      "answer": "8",
+      "answer": "7",
       "knowledgeTags": [
         "math.addsub.within_20"
       ]
     },
     {
       "id": "M2.g5-06",
-      "type": "mcq",
-      "prompt": "9 + 8 = ?",
-      "choices": [
-        "16",
-        "17",
-        "18",
-        "15"
-      ],
-      "answer": "17",
-      "knowledgeTags": [
-        "math.addsub.within_20"
-      ]
-    },
-    {
-      "id": "M2.g5-07",
-      "type": "mcq",
-      "prompt": "18 − 9 = ?",
-      "choices": [
-        "8",
-        "9",
-        "10",
-        "7"
-      ],
-      "answer": "9",
-      "knowledgeTags": [
-        "math.addsub.within_20"
-      ]
-    },
-    {
-      "id": "M2.g5-08",
       "type": "mcq",
       "prompt": "13 + 6 = ?",
       "choices": [
@@ -127,16 +97,46 @@
       ]
     },
     {
+      "id": "M2.g5-07",
+      "type": "mcq",
+      "prompt": "16 − 7 = ?",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "7"
+      ],
+      "answer": "9",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ]
+    },
+    {
+      "id": "M2.g5-08",
+      "type": "mcq",
+      "prompt": "9 + 8 = ?",
+      "choices": [
+        "16",
+        "17",
+        "18",
+        "15"
+      ],
+      "answer": "17",
+      "knowledgeTags": [
+        "math.addsub.within_20"
+      ]
+    },
+    {
       "id": "M2.g5-09",
       "type": "mcq",
-      "prompt": "19 − 6 = ?",
+      "prompt": "20 − 8 = ?",
       "choices": [
+        "11",
         "12",
         "13",
-        "14",
-        "11"
+        "10"
       ],
-      "answer": "13",
+      "answer": "12",
       "knowledgeTags": [
         "math.addsub.within_20"
       ]
@@ -144,18 +144,18 @@
     {
       "id": "M2.g5-10",
       "type": "mcq",
-      "prompt": "7 + 9 = ?",
+      "prompt": "15 + 4 = ?",
       "choices": [
-        "15",
-        "16",
-        "17",
-        "14"
+        "18",
+        "19",
+        "20",
+        "17"
       ],
-      "answer": "16",
+      "answer": "19",
       "knowledgeTags": [
         "math.addsub.within_20"
       ],
-      "jelly": "大门敞开！"
+      "jelly": "热身完成！"
     }
   ]
 }

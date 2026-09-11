@@ -4,6 +4,7 @@
   "ageBand": "g5",
   "title": "双人开门",
   "questionCount": 5,
+  "version": 1,
   "questions": [
     {
       "id": "T1.g5-01",

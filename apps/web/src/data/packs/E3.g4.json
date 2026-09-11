@@ -4,6 +4,7 @@
   "ageBand": "g4",
   "title": "单词配对翻翻乐",
   "questionCount": 6,
+  "version": 1,
   "questions": [
     {
       "id": "E3.g4-01",

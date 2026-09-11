@@ -4,6 +4,7 @@
   "ageBand": "kinder",
   "title": "听音找卡片",
   "questionCount": 6,
+  "version": 1,
   "questions": [
     {
       "id": "E1.k-01",

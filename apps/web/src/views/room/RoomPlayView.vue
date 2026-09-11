@@ -36,7 +36,7 @@ const jellyText = computed(() => {
   if (myAnswer.value) {
     return myAnswer.value.ok
       ? '答对了！等等家人～'
-      : '这题再一起试试～';
+      : '这题再一起来～';
   }
   return '一起选答案，开门！';
 });
